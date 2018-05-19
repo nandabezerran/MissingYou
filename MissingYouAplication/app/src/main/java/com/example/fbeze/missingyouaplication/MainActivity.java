@@ -1,13 +1,17 @@
 package com.example.fbeze.missingyouaplication;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+        import android.app.Activity;
+        import android.os.Bundle;
+        import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
-
+public class MainActivity extends Activity {
+    /** Called when the activity is first created. */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        TextView view = new TextView(this);
+        view.setText("Hello, Android");
+        setContentView(view);
+
     }
 }
