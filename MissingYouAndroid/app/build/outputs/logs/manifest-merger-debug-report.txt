@@ -1,0 +1,141 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+MERGED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-32:12
+MERGED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-23:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\a562d028e151aa6cacbbf08b1e7542bb\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\513dc7cf68e851a14d4fc97c6e1ce6b2\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\662cd974b4849afd35bb3654796061fc\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\8d0e0521cb7cf5c59896bd92c273e1a6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\c03c6bcc6212cc9afce7aabf69fa7a2d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\dbd436f43ea7f55a086f75affd8430d4\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\27dedacfccdaff8591fa6c1790459a9b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\d0f1be5ab32f29dfd3bdc35fd5932eb6\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\448549faaa2b6ecf636c2cbb94521d76\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\e513e5f770f2c848314e4a1025be1a51\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\5b1356ce955baeb320b0089a458ee8e7\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e7274f00226d6c6c93ba8db48ba287e3\AndroidManifest.xml:17:1-22:12
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+	package
+		ADDED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:2:5-47
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+		ADDED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+		ADDED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:1-2:50
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+MERGED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\a562d028e151aa6cacbbf08b1e7542bb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\a562d028e151aa6cacbbf08b1e7542bb\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\513dc7cf68e851a14d4fc97c6e1ce6b2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\513dc7cf68e851a14d4fc97c6e1ce6b2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\662cd974b4849afd35bb3654796061fc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\662cd974b4849afd35bb3654796061fc\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\8d0e0521cb7cf5c59896bd92c273e1a6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\8d0e0521cb7cf5c59896bd92c273e1a6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\c03c6bcc6212cc9afce7aabf69fa7a2d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\c03c6bcc6212cc9afce7aabf69fa7a2d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\dbd436f43ea7f55a086f75affd8430d4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\dbd436f43ea7f55a086f75affd8430d4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\27dedacfccdaff8591fa6c1790459a9b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\27dedacfccdaff8591fa6c1790459a9b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\d0f1be5ab32f29dfd3bdc35fd5932eb6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\d0f1be5ab32f29dfd3bdc35fd5932eb6\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\448549faaa2b6ecf636c2cbb94521d76\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\448549faaa2b6ecf636c2cbb94521d76\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\e513e5f770f2c848314e4a1025be1a51\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\e513e5f770f2c848314e4a1025be1a51\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\5b1356ce955baeb320b0089a458ee8e7\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\5b1356ce955baeb320b0089a458ee8e7\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e7274f00226d6c6c93ba8db48ba287e3\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\e7274f00226d6c6c93ba8db48ba287e3\AndroidManifest.xml:20:5-44
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+		ADDED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+		ADDED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Projects\MissingYou\MissingYouAndroid\app\src\main\AndroidManifest.xml
+application
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-30:19
+MERGED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-21:19
+MERGED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-21:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\513dc7cf68e851a14d4fc97c6e1ce6b2\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.0] C:\Users\Celito\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.0.aar\513dc7cf68e851a14d4fc97c6e1ce6b2\AndroidManifest.xml:9:5-20
+	android:supportsRtl
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:9-35
+	android:label
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:9-41
+	android:roundIcon
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:9-54
+	android:icon
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:9-43
+	android:allowBackup
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:9-35
+	android:theme
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:9-40
+activity#missingyou.missingyouandroid.feature.MainActivity
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:9-29:20
+	android:name
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:19-83
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:example.com+data:pathPattern:/.*+data:scheme:https
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:13-23:29
+	android:order
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:28-45
+action#android.intent.action.VIEW
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:25-66
+category#android.intent.category.BROWSABLE
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:17-78
+	android:name
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:27-75
+category#android.intent.category.DEFAULT
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:17-76
+	android:name
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:27-73
+data
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:19:17-22:46
+	android:host
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:21-47
+	android:scheme
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:22:21-43
+	android:pathPattern
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:21-46
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:24:13-28:29
+action#android.intent.action.MAIN
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:17-69
+	android:name
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:25-66
+category#android.intent.category.LAUNCHER
+ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:27:17-77
+	android:name
+		ADDED from [:feature] D:\Projects\MissingYou\MissingYouAndroid\feature\build\intermediates\manifests\full\debug\AndroidManifest.xml:27:27-74
+meta-data#aia-compat-api-min-version
+ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:18:9-20:33
+	android:value
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:13-30
+	android:name
+		ADDED from [:base] D:\Projects\MissingYou\MissingYouAndroid\base\build\intermediates\manifests\full\debug\AndroidManifest.xml:19:13-54
