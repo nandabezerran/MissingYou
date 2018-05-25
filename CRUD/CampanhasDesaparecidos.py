@@ -1,11 +1,11 @@
 import psycopg2
 from datetime import date
 
-# Ideia para validar campanha:  manda o request pro servidor l√°, ai pega o token e aimg do captcha e envia para aplica√ß√£o pro usu√°rio validar.
-# Dai o usu√°rio digita e remanda pro servidor e pum
+# Ideia para validar campanha:  manda o request pro servidor l·, ai pega o token e aimg do captcha e envia para aplicaÁ„o pro usu·rio validar.
+# Dai o usu·rio digita e remanda pro servidor e pum
 
 class CampanhasDesaparecidos(object):
-    banco = psycopg2.connect(host = 'localhost', database = 'MissingYou', user = 'postgres',  password = 'and123')
+    banco = psycopg2.connect(host = 'missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database = 'missingyoudb', user = 'Missingyouufc', password = 'missingyouufc2018')
      # mudar para host = 'missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database = 'missingyoudb', user = 'Missingyouufc', password = 'missingyouufc2018'
     
     """
@@ -16,7 +16,7 @@ class CampanhasDesaparecidos(object):
             retorno == 5 informar o bo para cadastrar camp
     """
     def _init_(self):
-        # ATEN√á√ÉO: CASO HAJA AS CONFIGURA√á√ïES DO BANCO SEJA DIFERENTE DAS CONFIGURA√á√ïES ACIMA, MUDE OS VALORES DAS VARIAVEIS
+        # ATEN«√O: CASO HAJA AS CONFIGURA«’ES DO BANCO SEJA DIFERENTE DAS CONFIGURA«’ES ACIMA, MUDE OS VALORES DAS VARIAVEIS
         self.banco = psycopg2.connect(host = 'localhost', database = 'MissingYou', user = 'postgres',  password = 'and123')
         # mudar para host = 'missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database = 'missingyoudb', user = 'Missingyouufc', password = 'missingyouufc2018'
 
@@ -91,7 +91,7 @@ class CampanhasDesaparecidos(object):
         else:
             return 2
 
-    def selecionarCampanhaUser(self, id_user): #seleciona as campanhas cadastradas por um usu√°rio
+    def selecionarCampanhaUser(self, id_user): #seleciona as campanhas cadastradas por um usu·rio
         sql = "SELECT * FROM campanhasperdidos" + " WHERE campanhasperdidos.iduser = " + str(id_user)
         cur = self.banco.cursor()
         cur.execute(sql)
@@ -274,26 +274,3 @@ class CampanhasDesaparecidos(object):
     
 
 nova = CampanhasDesaparecidos()
-print(nova.cadastrarCampanha(7, 3, 'ativado', '14-03-1998', 'Andreza', '19', 'f', 'azul', 'parda', 'castanho', '11-05-2018', '38t37326', 'ksksksk'))
-# ---------------------------------- TESTES
-#OK - tem que s√≥ que ver a compara√ß√£o, pois pra dar certo to setando os bo sem numero como null print(nova.selecionarCampanhasBoNull())
-# OK - print(nova.selecionarCampanhaId(1))
-#OK - print(nova.selecionarCampanhaUser(3))
-#print(nova.alterarStatus(1, "ta aqui"))
-#print(nova.alterarSexo(1, "teste"))
-#print(nova.alterarIdade(1, "teste"))
-#print(nova.alterarBO(1, "teste"))
-#print(nova.alterarRaca(1, "teste"))
-#print(nova.alterarOlhos(1, "teste"))
-#print(nova.alterarCabelo(1, "teste"))
-#print(nova.alterarStatus(10, "ta aqui"))
-#print(nova.alterarSexo(10, "teste"))
-#print(nova.alterarIdade(10, "teste"))
-#print(nova.alterarBO(10, "teste"))
-#print(nova.alterarRaca(10, "teste"))
-#print(nova.alterarOlhos(10, "teste"))
-#print(nova.alterarCabelo(10, "teste"))
-#print(nova.excluirCampanha(1))
-#print(nova.excluirCampanha(40))
-#print(nova.excluirCampanhasDoUsuario(2))
-#print(nova.excluirCampanhasDoUsuario(3))

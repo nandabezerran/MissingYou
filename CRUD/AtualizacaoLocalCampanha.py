@@ -6,11 +6,11 @@ class AtualizacaoLocalCampanha(object):
             retornO == 0 id_campanha nao foi encontrado
     """
 
-    banco = psycopg2.connect(host = 'localhost', database = 'MissingYou', user = 'postgres',  password = 'and123')
+    banco = psycopg2.connect(host = 'missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database = 'missingyoudb', user = 'Missingyouufc', password = 'missingyouufc2018')
     # mudar para host = 'missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database = 'missingyoudb', user = 'Missingyouufc', password = 'missingyouufc2018'
 
     def _init_(self):
-        # ATENÃ‡ÃƒO: CASO HAJA AS CONFIGURAÃ‡Ã•ES DO BANCO SEJA DIFERENTE DAS CONFIGURAÃ‡Ã•ES ACIMA, MUDE OS VALORES DAS VARIAVEIS
+        # ATENÇÃO: CASO HAJA AS CONFIGURAÇÕES DO BANCO SEJA DIFERENTE DAS CONFIGURAÇÕES ACIMA, MUDE OS VALORES DAS VARIAVEIS
         self.banco = psycopg2.connect(host = 'localhost', database = 'MissingYou', user = 'postgres',  password = 'and123')
         # mudar para host = 'missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database = 'missingyoudb', user = 'Missingyouufc', password = 'missingyouufc2018'
         
@@ -93,8 +93,3 @@ class AtualizacaoLocalCampanha(object):
             return 2
     
 nova = AtualizacaoLocalCampanha()
-#print(nova.inserirLocalCampanha(40, 22, 33, "20-03-2019", "maraponga"))
-#print(nova.selecionarCampanhaBairro("Fortaleza"))
-#print(nova.selecionarCampanhaId(1))
-#print(nova.alterarLocal(2, 40, 60, "20-03-2019", "Fortaleza"))
-#print(nova.excluirCampanha(1))

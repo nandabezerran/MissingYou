@@ -5,7 +5,7 @@ class Notificacoes(object):
     conexao = None
 
     def __init__(self):
-        self.conexao = psycopg2.connect(host='missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database= 'missingyoudb', user='Missingyouufc', password='missingyouufc2018)')
+        self.conexao = psycopg2.connect(host='missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database= 'missingyoudb', user='Missingyouufc', password='missingyouufc2018')
 
 
     def cadastrarotificacoes(self, idusuario, idcampanhasperdidos, descricao, dataatt):
@@ -48,4 +48,3 @@ class Notificacoes(object):
         cur.execute(sql)
         consulta = cur.fetchall()
         return consulta
-
