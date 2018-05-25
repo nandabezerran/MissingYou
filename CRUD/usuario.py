@@ -1,17 +1,12 @@
-#!flask/bin/python
-from flask import Flask, jsonify
-from flask import abort
-
-app = Flask(__name__)
-
+import psycopg2
 class Usuario(object):
 
     """
         codigo de retorno
         se:
             retorno == 1 siginifica que a operacao foi realizada com sucesso
-            retorno == 0 id nao foi encontrado ou o cadastro ou exclusao falhou
-            retorno == 2 email invalido ou email ja cadastrado no sistema
+            retornO == 0 id nao foi encontrado / ou o cadastro ou exclusao falhou
+            retorno == 2 email invalido ou email já cadastrado no sistema
             retorno == 3 cpf invalido
             retorno == 4 contato invalido
             retorno == 5 senha invalida
@@ -19,12 +14,107 @@ class Usuario(object):
 
     conexao = None
 
-def __init__(self):
-	self.conexao = psycopg2.connect(host='missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database= 'missingyoudb', user='Missingyouufc', password='missingyouufc2018')
+    def __init__(self):
+        self.conexao = psycopg2.connect(host='missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com', database= 'missingyoudb', user='Missingyouufc', password='missingyouufc2018)')
 
 
 
-def excluirUsuario(self, idUser):
+    def validarCpf(self, cpf):
+        if (len(cpf) == 11):
+            # Calcular primeiro digito verificador
+            sm = 0
+            peso = 10
+            for i in range(0, 9):
+                sm = sm + (int(cpf[i]) * peso)
+                peso = peso - 1
+
+            primeiroDigito = 11 - (sm % 11)
+            if ((primeiroDigito == 10) or (primeiroDigito == 11)):
+                primeiroDigito = 0
+
+            # calculo do segundo digito vefiricado
+            sm = 0
+            peso = 11
+            for i in range(0, 10):
+                sm = sm + (int(cpf[i]) * peso)
+                peso = peso - 1
+
+            segundoDigito = 11 - (sm % 11)
+            if ((segundoDigito == 10) or (segundoDigito == 11)):
+                segundoDigito = 0
+
+            if ((primeiroDigito == int(cpf[9])) and (segundoDigito == int(cpf[10]))):
+                return 1
+            else:
+                return 3
+        else:
+            return 3
+
+    def validarEmail(self, email):
+        try:
+            indexAroba = email.index('@')
+            if (indexAroba > 0):
+                indexPonto = email.index(".")
+                if (indexPonto - 1 > indexAroba):
+                    if (indexPonto + 1 < len(email)):
+                        return 1
+            return 2
+        except:
+            return 2
+
+
+    def validarDados(self, senhaUser, emailUser, contatoUser):
+
+        if(len(contatoUser)!= 11):
+            return 4
+
+        if(len(senhaUser)<= 5):
+            return 5
+
+        if(self.validarEmail(emailUser) == 2):
+            return 2
+
+        return 1
+
+    def validarSenha(self, emailUser, senhaUser):
+        cur = self.conexao.cursor()
+        sql = 'SELECT * FROM usuario WHERE emailUser =' + "'" + str(emailUser) + "'" + 'and senhaUser=' + "'" + str(senhaUser) + "'"
+        cur.execute(sql)
+        consulta = cur.fetchall()
+
+        if (consulta):
+            return 5
+        else:
+            return 0
+
+
+
+    def cadastrarUsuario(self, idUser, nomeUser, emailUser, cpfUser, contatoUser, senhauser,imagem):
+
+        cur = self.conexao.cursor()
+        sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
+        cur.execute(sql)
+        consulta = cur.fetchall()
+
+        cur = self.conexao.cursor()
+        sql2 = 'SELECT * FROM usuario WHERE emailUser = ' + "'" +  str(emailUser) + "'"
+        cur.execute(sql2)
+        consulta2 = cur.fetchall()
+
+        if(not consulta):
+            if( not consulta2):
+                if(self.validarDados(senhauser, emailUser, contatoUser) == 1):
+                    if(self.validarCpf(cpfUser) == 1 or cpfUser == 'NULL'):
+                        sql = "INSERT INTO usuario (idUser, nomeUser, emailUser, cpfUser, contatoUser, senhaUser, imagem ) VALUES" + "(" + str(idUser) + "," + "'"+nomeUser + "'"+ "," + "'"+ emailUser + "'"+"," + "'"+cpfUser + "'"+"," + "'"+  contatoUser + "'" + "," + "'"+ senhauser + "'"+ "," + "'"+imagem + "'" ")"
+                        cur.execute(sql)
+                        self.conexao.commit()
+                        return 1
+                    return 3
+                return self.validarDados(senhauser, emailUser, contatoUser)
+            return 2
+        return 0
+
+    def excluirUsuario(self, idUser):
 
         cur = self.conexao.cursor()
         sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
@@ -60,7 +150,7 @@ def excluirUsuario(self, idUser):
         else:
             return 0
 
-def selecionarUsuario(self, idUser):
+    def selcionarUsuario(self, idUser):
 
         cur = self.conexao.cursor()
         sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
@@ -69,7 +159,7 @@ def selecionarUsuario(self, idUser):
         return consulta
 
 
-def UpdateSenha(self, idUser, senhauser):
+    def UpdateSenha(self, idUser, senhauser):
 
         cur = self.conexao.cursor()
         sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
@@ -87,7 +177,7 @@ def UpdateSenha(self, idUser, senhauser):
 
 
 
-def UpdateNomeUser(self, idUser, nomeUser):
+    def UpdateNomeUser(self, idUser, nomeUser):
 
         cur = self.conexao.cursor()
         sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
@@ -102,7 +192,7 @@ def UpdateNomeUser(self, idUser, nomeUser):
         else:
             return 0
 
-def UpdateImagem(self, idUser, imagem):
+    def UpdateImagem(self, idUser, imagem):
 
         cur = self.conexao.cursor()
         sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
@@ -118,7 +208,7 @@ def UpdateImagem(self, idUser, imagem):
             return 0
 
 
-def UpdateEmailUser(self, idUser, emailUser):
+    def UpdateEmailUser(self, idUser, emailUser):
 
         cur = self.conexao.cursor()
         sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
@@ -135,7 +225,7 @@ def UpdateEmailUser(self, idUser, emailUser):
         return 0
 
 
-def UpdateContatoUser(self, idUser, contatoUser):
+    def UpdateContatoUser(self, idUser, contatoUser):
 
         cur = self.conexao.cursor()
         sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
@@ -152,7 +242,7 @@ def UpdateContatoUser(self, idUser, contatoUser):
         return 0
 
 
-def UpdateCPF(self, idUser, cpfUser):
+    def UpdateCPF(self, idUser, cpfUser):
         cur = self.conexao.cursor()
         sql = 'SELECT cpfUser FROM usuario WHERE idUser =' + str(idUser)
         cur.execute(sql)
@@ -166,9 +256,6 @@ def UpdateCPF(self, idUser, cpfUser):
             return 3
         return 0
 
-def fechar(self):
-        self.conexao.close()
-"""
 
-if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=80)
+    def fechar(self):
+        self.conexao.close()
