@@ -6,7 +6,7 @@ from ValidarCpf   import validarCpf
 import psycopg2
 app = Flask(__name__)
 
-@app.route('/missingYou/api/v1.0/cadastrarUsuario/<int:idUser>/<string:nomeUser>/<string:senhaUser>/<string:emailUser>/<string:contatoUser>/<string:cpfUser>/<string:imagem>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/cadastrarUsuario/<int:idUser>/<string:senhaUser>/<string:emailUser>/<string:contatoUser>/<string:cpfUser>/<string:imagem>/<string:nomeUser>', methods=['GET'])
 def cadastrarUsuario(idUser, nomeUser, emailUser, cpfUser, contatoUser, senhaUser,imagem):
 	
 	try:

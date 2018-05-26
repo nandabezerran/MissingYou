@@ -1,13 +1,11 @@
 #!flask/bin/python
 from flask import Flask, jsonify
 from flask import abort
-from ValidarDados import validarDados
-from ValidarCpf   import validarCpf
 import psycopg2
 app = Flask(__name__)
 
-@app.route('/missingYou/api/v1.0/attSenha/<int:idUser>/<string:senhaUser>', methods=['GET'])
-def attSenha(idUser, senhaUser):
+@app.route('/missingYou/api/v1.0/attSenhaUsuario/<int:idUser>/<string:senhaUser>', methods=['GET'])
+def attSenhaUsuario(idUser, senhaUser):
 	
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
