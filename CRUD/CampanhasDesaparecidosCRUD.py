@@ -79,7 +79,7 @@ def selecionarCampanhasBoNull():
 	resultado = cur.fetchall();
 	resultList = []
 	if(resultado):
-		for elementos in resultado:
+		for elemento in resultado:
 			consultaEmDict = collections.OrderedDict()
 			consultaEmDict = {'idCampanhas': elemento[0], 'idUser': elemento[1], 'statusCampanhas': elemento[2],
 			   'dataNasc':elemento[3], 'nomeDesaparecido': elemento[4], 'idadeDesaparecido': elemento[5], 
