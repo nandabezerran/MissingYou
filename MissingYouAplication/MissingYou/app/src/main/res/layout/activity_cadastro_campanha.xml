@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:background="@color/white"
+    android:layout_height="fill_parent" >
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Nome do desaparecido"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="38dp"/>
+
+        <EditText
+            android:id="@+id/edit_nome_desaparecido"
+            android:layout_width="350dp"
+            android:backgroundTint="@color/orange"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:padding="10dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="nome do desaparecido"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Data de nascimento"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="38dp"/>
+
+        <EditText
+            android:id="@+id/edit_data_nascimento"
+            android:layout_width="350dp"
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10"
+            android:backgroundTint="@color/orange"
+            android:inputType="date"
+            android:hint="data de nascimento"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Data do desaparecimento"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="38dp"/>
+
+        <EditText
+            android:id="@+id/edit_data_desaparecimento"
+            android:layout_width="350dp"
+
+            android:padding="10dp"
+            android:layout_gravity="center"
+            android:textColorHint="@android:color/darker_gray"
+            android:backgroundTint="@color/orange"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="data do desaparecimento"
+            android:inputType="date" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Local de desaparecimento"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="38dp"/>
+
+        <EditText
+            android:id="@+id/edit_local_desaparecimento"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:padding="10dp"
+
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10"
+            android:inputType="text"
+            android:hint="local de desaparecimento"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Número do B.O"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="38dp"/>
+
+        <EditText
+            android:id="@+id/edit_numero_bo"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:backgroundTint="@color/orange"
+            android:hint="número do b.o"
+            android:textColorHint="@android:color/darker_gray"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Sexo do desaparecido"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            android:layout_marginLeft="40dp"/>
+        <Spinner
+            android:id="@+id/spinner_sexo"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Cor dos olhos"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            android:layout_marginLeft="40dp"/>
+        <Spinner
+            android:id="@+id/spinner_olhos"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Raça"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            android:layout_marginLeft="40dp"/>
+        <Spinner
+            android:id="@+id/spinner_raca"
+            android:layout_gravity="center"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:text="Cor do cabelo"
+            android:layout_gravity="start"
+            android:textSize="18sp"
+            android:textColor="@color/gray"
+            android:layout_marginLeft="40dp"/>
+        <Spinner
+            android:id="@+id/spinner_cabelo"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/button_cadastrar_campanha"
+            android:layout_gravity="center"
+            android:layout_width="320dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="50dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:text="CADASTRAR"/>
+
+    </LinearLayout>
+</ScrollView>

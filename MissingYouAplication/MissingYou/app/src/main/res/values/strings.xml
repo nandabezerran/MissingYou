@@ -1,0 +1,86 @@
+<resources>
+    <string name="app_name">MissingYou</string>
+    <string name="title_activity_principal">PrincipalActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_cadastro_campanha">CadastroCampanhaActivity</string>
+    <string name="line">--------------------------------------------------------</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="pular">Pular</string>
+
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- Strings related to campanhas -->
+
+    <string name="nome_desaparecido">Nome do desaparecido</string>
+    <string name="data_de_desaparecimento">Data do desaparecimento</string>
+    <string name="local_de_desaparecimento">Local de desaparecimento</string>
+    <string name="data_de_nascimento">Data de nascimento</string>
+    <string name="informacao">informacao</string>
+    <string name="numero_bo">Número do B.O</string>
+
+    <string name="cor_cabelo">Cor do cabelo</string>
+    <string name="cor_olhos">Cor dos olhos</string>
+    <string name="raca">Raça</string>
+    <string name="sexo">Sexo do desaparecido</string>
+    <string name="alterar_perfil">Alterar</string>
+
+    <!-- Strings related to user -->
+
+    <string name="nome_usuario">Nome</string>
+    <string name="email_usuario">Email</string>
+    <string name="cpf_usuario">CPF</string>
+    <string name="senha_usuario">Senha</string>
+
+
+    <string-array name="sexo">
+        <item>Feminino</item>
+        <item>Masculino</item>
+    </string-array>
+
+    <string-array name="raca">
+        <item>Pardo</item>
+        <item>Negro</item>
+        <item>Branco</item>
+        <item>Amarelo</item>
+        <item>Índigena</item>
+    </string-array>
+
+    <string-array name="olhos">
+        <item>Castanhos</item>
+        <item>Negros</item>
+        <item>Azuis</item>
+        <item>Verdes</item>
+        <item>Outro</item>
+    </string-array>
+
+    <string-array name="cabelo">
+        <item>Castanhos</item>
+        <item>Negros</item>
+        <item>Loiros</item>
+        <item>Ruivos</item>
+        <item>Grisalhos</item>
+        <item>Outro</item>
+    </string-array>
+
+
+    <string name="dialog_message">Por favor, altere seus dados e insira CPF e telefone para continuar</string>
+    <string name="dialog_title">Erro</string>
+</resources>

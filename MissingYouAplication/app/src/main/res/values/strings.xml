@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">MissingYouAplication</string>
-    <string name="title_activity_wall">Missing You</string>
-    <string name="large_text">
-        "Aqui vai a lista de campanhas na ordem de proximidade do usuario"
-    </string>
-    <string name="action_settings">Opcoes</string>
-</resources>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".AtualizarCampanhaActivity">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="start"
+            android:textColor="@color/black"
+            android:text="@string/nome_desaparecido"
+            android:textSize="18sp" />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:hint="@string/informacao"
+            android:inputType="textPersonName"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:padding="10dp"
+            android:ems="10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/data_de_nascimento"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="@string/informacao"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/data_de_desaparecimento"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="@string/informacao"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/local_de_desaparecimento"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="@string/informacao"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/numero_bo"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="@string/informacao"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="@string/sexo"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_sexo_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="@string/cor_cabelo"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_cabelo_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="@string/cor_olhos"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_olhos_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="@string/raca"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_raca_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:text="@string/alterar_perfil"
+            android:background="@drawable/round_button"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</ScrollView>
