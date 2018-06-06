@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".AtualizarCampanhaActivity">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="start"
+            android:textColor="@color/black"
+            android:text="Nome"
+            android:textSize="18sp" />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:hint="Nome do desaparecido"
+            android:inputType="textPersonName"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:padding="10dp"
+            android:ems="10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="Data de nascimento"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="Data de nascimento do desaparecido"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="Data de Desaparecimento"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="Data do desaparecimento"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="Local"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="Local onde a pessoa desapareceu"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="20dp"
+            android:text="Boletim de Ocorrência"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38dp"
+            android:layout_marginRight="38dp"
+            android:padding="10sp"
+            android:hint="Número do Boletim de Ocorrência"
+            android:inputType="text"
+            android:backgroundTint="@color/orange"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textColorHint="@android:color/darker_gray"
+            android:ems="10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="Sexo"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_sexo_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="Cor do Cabelo"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_cabelo_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="Cor dos Olhos"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_olhos_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="40dp"
+            android:textColor="@color/black"
+            android:text="Raça"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_raca_atualizar"
+            android:layout_width="350dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+        </Spinner>
+
+        <Button
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            android:text="Salvar Alterações"
+            android:background="@drawable/round_button"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</ScrollView>

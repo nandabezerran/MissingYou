@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuadroCampanhasCadastradas"
+    android:id="@+id/telaQuadroCampanhasCadastradas">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <ImageView
+            android:id="@+id/foto_desaparecido"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/desaparecido"
+            android:layout_marginLeft="43dp"/>
+
+        <!--<ImageButton-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_marginTop="150dp"-->
+        <!--android:layout_marginLeft="5dp"-->
+        <!--android:src="@drawable/ic_anterior"-->
+        <!--android:background="@drawable/round_button"-->
+        <!--android:tint="@color/white"/>-->
+
+        <!--<ImageButton-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_marginTop="150dp"-->
+        <!--android:layout_marginLeft="330dp"-->
+        <!--android:src="@drawable/ic_proximo"-->
+        <!--android:background="@drawable/round_button"-->
+        <!--android:tint="@color/white"/>-->
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="200dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_mode_edit_black"
+                android:drawableTint="@color/orange"
+                android:text="  NOME:"
+                android:textSize="15sp"
+                android:textColor="@color/orange"/>
+
+            <TextView
+                android:id="@+id/nomePessoa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:text="FERNANDA BEZERRA NASCIMENTO"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/orange"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_menu_mapa"
+                android:drawableTint="@color/orange"
+                android:text="  LOCAL:"
+                android:textSize="15sp"
+                android:textColor="@color/orange"/>
+
+            <TextView
+                android:id="@+id/local_desaparecimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:text="Endereço aqui"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/orange"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawableTint="@color/orange"
+                android:text="  DATA DE NASCIMENTO:"
+                android:textSize="15sp"
+                android:textColor="@color/orange"/>
+
+            <TextView
+                android:id="@+id/data_nascimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:text="00/00/0000"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/orange"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawableTint="@color/orange"
+                android:text="  DATA DE DESAPARECIMENTO:"
+                android:textSize="15sp"
+                android:textColor="@color/orange"/>
+
+            <TextView
+                android:id="@+id/data_desaparecimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:text="00/00/0000"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/orange"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_descricao"
+            android:drawableTint="@color/orange"
+            android:text="  DESCRIÇÃO FÍSICA:       "
+            android:textSize="15sp"
+            android:textColor="@color/orange"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginLeft="17dp"
+                android:text="SEXO: "
+                android:textColor="@color/orange"
+                />
+
+            <TextView
+                android:id="@+id/genero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="FEMENINO"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:text="RAÇA: "
+                android:textColor="@color/orange"
+                />
+
+            <TextView
+                android:id="@+id/raca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/orange"
+                android:textSize="15sp"
+                android:text="BRANCA"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginLeft="10dp"
+                android:text="CABELO: "
+                android:textColor="@color/orange"
+                />
+
+            <TextView
+                android:id="@+id/cabelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/orange"
+                android:textSize="15sp"
+                android:text="LOIRO"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_marginLeft="144dp"
+                android:text="OLHOS: "
+                android:textColor="@color/orange"
+                />
+
+            <TextView
+                android:id="@+id/olho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/orange"
+                android:textSize="15sp"
+                android:text="BRANCO"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/orange"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/gerarFolder"
+                android:layout_width="125dp"
+                android:layout_height="150dp"
+                android:text="GERAR FOLDER"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+
+                />
+            <Button
+                android:id="@+id/notificacoes"
+                android:layout_marginLeft="125dp"
+                android:layout_width="125dp"
+                android:layout_height="150dp"
+                android:text="NOTIFICACOES"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                />
+            <Button
+                android:id="@+id/alterarDados"
+                android:layout_marginLeft="250dp"
+                android:layout_width="135dp"
+                android:layout_height="150dp"
+                android:text="ALTERAR DADOS"
+                android:textColor="@color/white"
+                android:background="@color/orange"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
