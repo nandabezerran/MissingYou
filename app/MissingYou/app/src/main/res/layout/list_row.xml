@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        card_view:cardCornerRadius="5dp">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+            <!-- Image -->
+            <ImageView
+                android:id="@+id/foto_desaparecido"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="10dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop" />
+
+            <!-- Nome -->
+            <TextView
+                android:id="@+id/label_nome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/foto_desaparecido"
+                android:layout_toRightOf="@+id/foto_desaparecido"
+                android:text="Nome: "
+                android:textStyle="bold"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/nomes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_toEndOf="@+id/label_nome"
+                android:layout_toRightOf="@+id/label_nome"
+                android:textSize="15sp" />
+
+            <!-- Data desaparecimento -->
+
+            <TextView
+                android:id="@+id/label_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nomes"
+                android:layout_toEndOf="@+id/foto_desaparecido"
+                android:layout_toRightOf="@+id/foto_desaparecido"
+                android:text="Data desaparecimento: "
+                android:textStyle="bold"
+
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/datas_desaparecimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nomes"
+                android:layout_toEndOf="@+id/label_data"
+                android:layout_toRightOf="@+id/label_data"
+                android:textSize="15sp" />
+
+            <!-- Local de desaparecimento -->
+
+            <TextView
+                android:id="@+id/label_local"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/datas_desaparecimento"
+                android:layout_toEndOf="@+id/foto_desaparecido"
+                android:layout_toRightOf="@+id/foto_desaparecido"
+                android:textStyle="bold"
+
+                android:text="Local: "
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/locais_desaparecimento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/datas_desaparecimento"
+                android:layout_toEndOf="@+id/label_local"
+                android:layout_toRightOf="@+id/label_local"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

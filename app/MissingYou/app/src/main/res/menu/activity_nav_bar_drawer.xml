@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:checked="false"
+            android:id="@+id/homeMenu"
+            android:icon="@drawable/ic_menu_home"
+            android:title="Home" />
+        <item
+            android:checked="false"
+            android:id="@+id/alterar_dados"
+            android:icon="@drawable/ic_mode_edit_black"
+            android:title="Alterar Dados" />
+        <item
+            android:checked="false"
+            android:checkable="true"
+            android:id="@+id/excluir_user"
+            android:icon="@drawable/ic_menu_close"
+            android:title="Excluir conta" />
+        <item
+            android:checked="false"
+            android:id="@+id/cadastrar_campanha"
+            android:icon="@drawable/ic_menu_add"
+            android:title="Cadastrar Campanha" />
+        <item
+            android:checked="false"
+            android:id="@+id/campanhas_cadastradas"
+            android:icon="@drawable/ic_menu_cadastradas"
+            android:title="Campanhas Cadastradas" />
+        <item
+            android:checked="false"
+            android:id="@+id/campanhas_salvas"
+            android:icon="@drawable/ic_menu_salvas"
+            android:title="Campanhas Salvas" />
+        <item
+            android:checked="false"
+            android:id="@+id/mapa"
+            android:icon="@drawable/ic_menu_mapa"
+            android:title="Mapa" />
+    </group>
+
+</menu>

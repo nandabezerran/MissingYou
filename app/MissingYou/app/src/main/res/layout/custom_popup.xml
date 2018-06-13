@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/border">
+
+    <TextView
+        android:id="@+id/texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Você realmente deseja excluir sua conta?"
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/texto"/>
+
+    <Button
+        android:id="@+id/botaoSim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/texto"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:text="SIM"
+        android:textColor="@color/white"
+        android:background="@drawable/round_button_alternative"/>
+
+    <Button
+        android:id="@+id/botaoNao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/texto"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        android:layout_toRightOf ="@id/botaoSim"
+        android:layout_marginLeft="20dp"
+        android:text="NAO"
+        android:background="@drawable/round_button_alternative"
+        />
+
+
+
+</RelativeLayout>
