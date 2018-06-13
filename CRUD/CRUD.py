@@ -1,5 +1,7 @@
 #!flask/bin/python
+#coding=utf-8
 from flask import Flask
+from flask import request
 from flask import jsonify
 from datetime import date
 import collections
@@ -20,8 +22,6 @@ def validarEmail(email):
 	except:
 		return 'email invalido',412
 
-app = Flask(__name__)
-
 @app.route('/missingYou/api/v1.0/validarDados/<string:senhaUser>/<string:emailUser>/<string:contatoUser>', methods=['GET'])
 def validarDados(senhaUser, emailUser, contatoUser):
 
@@ -35,6 +35,28 @@ def validarDados(senhaUser, emailUser, contatoUser):
 		return 'email invalido',412
 
 	return 'operacao realizada com sucesso',200
+
+@app.route('/missingYou/api/v1.0/validarLogin/<string:senhaUser>/<string:emailUser>', methods=['GET'])
+def validarLogin(emailUser, senhaUser):
+	try:
+		conexao = psycopg2.connect(database="MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
+                                   host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
+	except:
+ 		return 'nao conectou ao banco', 503
+	cur = conexao.cursor()
+	sql = 'SELECT * FROM usuario WHERE emailUser =' + "'" + str(emailUser) + "'" + 'and senhaUser=' + "'" + str(
+        senhaUser) + "'"
+	cur.execute(sql)
+	consulta = cur.fetchall()
+		
+	if (consulta):
+		consultaEmDict = [{'idUser': elemento[0], 'nomeUser': elemento[1], 'emailUser': elemento[2],
+			   'cpfUser':elemento[3], 'contatoUser': elemento[4], 
+			   'imagemUser':elemento[6]} for elemento in consulta]
+		return jsonify(consultaEmDict)
+
+	else:
+		return 'operacao falhou, email ou senha incorretos', 412
 
 @app.route('/missingYou/api/v1.0/selecionarUsuario/<int:idUser>', methods=['GET'])
 def selecionarUsuario(idUser):
@@ -282,38 +304,6 @@ def excluirUsuario(idUser):
 	else:
 		return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/cadastrarUsuario/<int:idUser>/<string:senhaUser>/<string:emailUser>/<string:contatoUser>/<string:cpfUser>/<string:imagem>/<string:nomeUser>', methods=['GET'])
-def cadastrarUsuario(idUser, nomeUser, emailUser, cpfUser, contatoUser, senhaUser,imagem):
-	
-	try:
-		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
-						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
-	except:
-		return 'nao conectou ao banco',503
-
-	cur = conexao.cursor()
-	sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
-	cur.execute(sql)
-	consulta = cur.fetchall()
-
-	cur = conexao.cursor()
-	sql2 = 'SELECT * FROM usuario WHERE emailUser = ' + "'" +  str(emailUser) + "'"
-	cur.execute(sql2)
-	consulta2 = cur.fetchall()
-
-	if(not consulta):
-		if(not consulta2):
-			if(validarDados(senhaUser, emailUser, contatoUser) == 'operacao realizada com sucesso',200):
-				if(validarCpf(cpfUser) == 'operacao realizada com sucesso',200 or cpfUser == 'NULL'):
-					sql = "INSERT INTO usuario (idUser, nomeUser, emailUser, cpfUser, contatoUser, senhaUser, imagem ) VALUES" + "(" + str(idUser) + "," + "'"+nomeUser + "'"+ "," + "'"+ emailUser + "'"+"," + "'"+cpfUser + "'"+"," + "'"+  contatoUser + "'" + "," + "'"+ senhaUser + "'"+ "," + "'"+imagem + "'" ")"
-					cur.execute(sql)
-					conexao.commit()
-					return 'operacao foi realizada com sucesso',200
-				return 'cpf invalido',412
-			return validarDados(senhaUser, emailUser, contatoUser)
-		return 'email invalido ou email ja cadastrado no sistema',412
-	return 'id nao foi encontrado',412
-
 @app.route('/missingYou/api/v1.0/validaDataParaBo/<string:dataDes>', methods=['GET'])
 def validarDataParaBO(dataDes):
 	"""
@@ -330,6 +320,40 @@ def validarDataParaBO(dataDes):
 	else: # se o prazo for maior que 3 ele  precisa informar o numero de bo
 		return 'precisa informar B.O.',412
 
+@app.route('/missingYou/api/v1.0/cadastrarUsuario', methods=['POST'])
+def cadastrarUsuario():
+	
+	try:
+		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
+						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
+	except:
+		return 'nao conectou ao banco',503
+	data = request.get_json()
+	#data = data.load()
+
+	cur = conexao.cursor()
+	sql = 'SELECT * FROM usuario WHERE idUser =' + str(data["idUser"])
+	cur.execute(sql)
+	consulta = cur.fetchall()
+
+	cur = conexao.cursor()
+	sql2 = 'SELECT * FROM usuario WHERE emailUser = ' + "'" +  str(data["emailUser"]) + "'"
+	cur.execute(sql2)
+	consulta2 = cur.fetchall()
+	
+
+	if(not consulta):
+		if(not consulta2):
+			if(validarDados(data["senhaUser"],["emailUser"],["contatoUser"]) == 'operacao realizada com sucesso',200):
+				if(validarCpf(data["cpfUser"]) == 'operacao realizada com sucesso',200 or cpfUser == 'NULL'):
+					sql = "INSERT INTO usuario (idUser,nomeUser, emailUser,cpfUser,contatoUser,senhaUser, imagem ) VALUES" + "(" + str(data["idUser"]) + "," + "'"+data["nomeUser"] + "'"+ "," + "'"+ data["emailUser"] + "'"+"," + "'"+data["cpfUser"] + "'"+"," + "'"+  data["contatoUser"] + "'" + "," + "'"+ data["senhaUser"] + "'"+ "," + "'"+data["imagemUser"] + "'" ")"
+					cur.execute(sql)
+					conexao.commit()
+					return 'operacao foi realizada com sucesso',200
+				return 'cpf invalido',412
+			return validarDados(data["senhaUser"], data["emailUser"], data["contatoUser"])
+		return 'email invalido ou email ja cadastrado no sistema',412
+	return 'id nao foi encontrado',412
 
 @app.route('/missingYou/api/v1.0/cadastrarCampanha/<int:id_campanha>/<int:id_user>/<string:status>/<string:datanasc>/<string:nome_des>/<string:idade_des>/<string:sexo_des>/<string:olhos>/<string:raca>/<string:cabelo>/<string:data_des>/<string:bo>/<string:descricao>', methods=['GET'])
 def cadastrarCampanha(id_campanha, id_user,  status, datanasc, nome_des, idade_des, sexo_des, olhos, raca, cabelo, data_des, bo, descricao):
@@ -1097,6 +1121,7 @@ def selecionarNotificacao(idUser):
 		resultList.append(consultaEmDict)
 
 	return jsonify(resultList)
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=80)
