@@ -1,85 +1,46 @@
-/missingYou/api/v1.0/validarEmail/<string:email>
+URIs utilizadas e seus respectivos métodos
 
-/missingYou/api/v1.0/validarDados/<string:senhaUser>/<string:emailUser>/<string:contatoUser
+→ URIs para usuário
+/missingYou/api/v1.0/validarLogin                                     - método = POST
+/missingYou/api/v1.0/selecionarUsuario/<int:idUser>                   - método = GET
+/missingYou/api/v1.0/attImagem/<int:idUser>/<string:imagem>           - método = PUT
+/missingYou/api/v1.0/attNomeUser/<int:idUser>                         - método = PUT
+/missingYou/api/v1.0/attContatoUsuario/<int:idUser>                   - método = PUT
+/missingYou/api/v1.0/attSenhaUsuario/<int:idUser>                     - método = PUT
+/missingYou/api/v1.0/attCpfUsuario/<int:idUser>                       - método = PUT
+/missingYou/api/v1.0/attEmailUsuario/<int:idUser>                     - método = PUT
+/missingYou/api/v1.0/excluirUsuario/<int:idUser>                      - método = DELETE
+/missingYou/api/v1.0/cadastrarUsuario                                 - método = POST
 
-/missingYou/api/v1.0/selecionarUsuario/<int:idUser>
+→ URIs para campanhas
+/missingYou/api/v1.0/cadastrarCampanha                                - método=POST
+/missingYou/api/v1.0/selecionarCampanhasBoNull                        - método=GET
+/missingYou/api/v1.0/selecionarCampanhasId/<int:id_campanha>          - métodos=GET
+/missingYou/api/v1.0/selecionarCampanhasUser/<int:id_user>            - método=GET
+/missingYou/api/v1.0/alterarStatusCampanha/<int:id_campanha>          - método=PUT
+/missingYou/api/v1.0/alterarNomeDesaparecido/<int:id_campanha>        - método=PUT
+/missingYou/api/v1.0/alterarCabeloDesaparecido/<int:id_campanha>      - método=PUT
+/missingYou/api/v1.0/alterarRacaDesaparecido/<int:id_campanha>        - método=PUT
+/missingYou/api/v1.0/alterarIdadeDesaparecido/<int:id_campanha>       - método=PUT
+/missingYou/api/v1.0/alterarSexoDesaparecido/<int:id_campanha>        - método=PUT
+/missingYou/api/v1.0/excluirCampanha/<int:id_campanha>                - método=DELETE
+/missingYou/api/v1.0/alterarBO/<int:id_campanha>                      - método=PUT
+/missingYou/api/v1.0/alterarDescricao/<int:id_campanha>               - método=PUT
+/missingYou/api/v1.0/inserirLocalCampanha                             - método=POST
+/missingYou/api/v1.0/selecionarCampanhaIdLocalizacao/<int:id_campanha>- método=GET
+/missingYou/api/v1.0/selecionarCampanhaBairro/<string:bairro>         - método=GET
+/missingYou/api/v1.0/alterarLocal/<int:id_campanha>                   - método=PUT
+/missingYou/api/v1.0/excluirCampanhaLocalizacao/<int:id_campanha>     - método=DELETE
+/missingYou/api/v1.0/inserirCampanhaSalvas                            - método=POST
+/missingYou/api/v1.0/selecionarCampanhaIdCampanha/<int:id_campanha>   - método=GET
+/missingYou/api/v1.0/selecionarCampanhaIdUser/<int:id_user>           - método=GET
+/missingYou/api/v1.0/excluirCampanhasDoUsuario/<int:id_user>          - método=DELETE
+/missingYou/api/v1.0/excluirCampanhaSalva/<int:id_campanha>           - método=DELETE
+/missingYou/api/v1.0/inserirImgCampanha                               - método=POST
+/missingYou/api/v1.0/selecionarImgCampanha/<int:id_campanha>          - método=GET
+/missingYou/api/v1.0/ExcluirImagem/<int:id_campanha>/<string:imagem>  - método=DELETE
 
-/missingYou/api/v1.0/validarSenha/<string:emailUser>/<string:senhaUser>
-
-/missingYou/api/v1.0/validarCpf/<string:cpf>
-
-/missingYou/api/v1.0/attImagem/<int:idUser>/<string:imagem>
-
-/missingYou/api/v1.0/attNomeUser/<int:idUser>/<string:nomeUser>
-
-/missingYou/api/v1.0/attContatoUsuario/<int:idUser>/<string:contatoUser>
-
-/missingYou/api/v1.0/attSenhaUsuario/<int:idUser>/<string:senhaUser>
-
-/missingYou/api/v1.0/attCpfUsuario/<int:idUser>/<string:cpfUser>
-
-/missingYou/api/v1.0/attEmailUsuario/<int:idUser>/<string:emailUser>
-
-/missingYou/api/v1.0/excluirUsuario/<int:idUser>
-
-/missingYou/api/v1.0/cadastrarUsuario/<int:idUser>/<string:senhaUser>/<string:emailUser>/<string:contatoUser>/<string:cpfUser>/<string:imagem>/<string:nomeUser>
-
-/missingYou/api/v1.0/validaDataParaBo/<string:dataDes>
-
-/missingYou/api/v1.0/cadastrarCampanha/<int:id_campanha>/<int:id_user>/<string:status>/<string:datanasc>/<string:nome_des>/<string:idade_des>/<string:sexo_des>/<string:olhos>/<string:raca>/<string:cabelo>/<string:data_des>/<string:bo>/<string:descricao>
-
-/missingYou/api/v1.0/selecionarCampanhasBoNull/
-
-/missingYou/api/v1.0/selecionarCampanhasId/<int:id_campanha>
-
-/missingYou/api/v1.0/selecionarCampanhasUser/<int:id_user>
-
-/missingYou/api/v1.0/alterarStatusCampanha/<int:id_campanha>/<string:status>
-
-/missingYou/api/v1.0/alterarNomeDesaparecido/<int:id_campanha>/<string:nome>
-
-/missingYou/api/v1.0/alterarCabeloDesaparecido/<int:id_campanha>/<string:cabelo>
-
-/missingYou/api/v1.0/alterarRacaDesaparecido/<int:id_campanha>/<string:raca>
-
-/missingYou/api/v1.0/alterarIdadeDesaparecido/<int:id_campanha>/<string:idade>
-
-/missingYou/api/v1.0/alterarSexoDesaparecido/<int:id_campanha>/<string:sexo>
-
-/missingYou/api/v1.0/excluirCampanha/<int:id_campanha>
-
-/missingYou/api/v1.0/alterarBO/<int:id_campanha>/<string:bo>
-
-/missingYou/api/v1.0/alterarDescricao/<int:id_campanha>/<string:descricao>
-
-('/missingYou/api/v1.0/inserirLocalCampanha/<int:id_campanha>/<int:lat>/<int:lon>/<string:data>/<string:bairro>
-
-/missingYou/api/v1.0/selecionarCampanhaIdLocalizacao/<int:id_campanha>
-
-/missingYou/api/v1.0/selecionarCampanhaBairro/<string:bairro>
-
-/missingYou/api/v1.0/alterarLocal/<int:id_campanha>/<int:lat>/<int:lon>/<string:data>/<string:bairro>
-
-/missingYou/api/v1.0/excluirCampanhaLocalizacao/<int:id_campanha>
-
-/missingYou/api/v1.0/inserirCampanhaSalvas/<int:id_campanha>/<int:id_user>
-
-/missingYou/api/v1.0/selecionarCampanhaIdCampanha/<int:id_campanha>
-
-/missingYou/api/v1.0/selecionarCampanhaIdUser/<int:id_user>
-
-/missingYou/api/v1.0/excluirCampanhasDoUsuario/<int:id_user>
-
-/missingYou/api/v1.0/excluirCampanhaSalva/<int:id_campanha>
-
-/missingYou/api/v1.0/inserirImgCampanha/<int:id_campanha>/<string:imagem>
-
-/missingYou/api/v1.0/selecionarImgCampanha/<int:id_campanha>
-
-/missingYou/api/v1.0/ExcluirImagem/<int:id_campanha>/<string:imagem>
-
-/missingYou/api/v1.0/cadastrarNotificacoes/<int:idnotificacao>/<int:idusuario>/<int:idcampanhasperdidos>/<string:descricao>/<string:dataatt>
-
-/missingYou/api/v1.0/excluirNotificacoes/<int:idUser>
-
-/missingYou/api/v1.0/selecionarNotificacoes/<int:idUser>
+→ URIs notificações
+/missingYou/api/v1.0/cadastrarNotificacoes                           - método=POST
+/missingYou/api/v1.0/excluirNotificacoes/<int:idUser>                - método=DELETE
+/missingYou/api/v1.0/selecionarNotificacoes/<int:idUser>             - método=GET

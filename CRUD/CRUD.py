@@ -9,7 +9,7 @@ import psycopg2
 
 app = Flask(__name__)
 
-@app.route('/missingYou/api/v1.0/validarEmail/<string:email>', methods=['GET'])
+
 def validarEmail(email):
 	try:
 		indexAroba = email.index('@')
@@ -22,7 +22,6 @@ def validarEmail(email):
 	except:
 		return 'email invalido',412
 
-@app.route('/missingYou/api/v1.0/validarDados/<string:senhaUser>/<string:emailUser>/<string:contatoUser>', methods=['GET'])
 def validarDados(senhaUser, emailUser, contatoUser):
 
 	if(len(contatoUser)!= 11):
@@ -36,16 +35,18 @@ def validarDados(senhaUser, emailUser, contatoUser):
 
 	return 'operacao realizada com sucesso',200
 
-@app.route('/missingYou/api/v1.0/validarLogin/<string:senhaUser>/<string:emailUser>', methods=['GET'])
-def validarLogin(emailUser, senhaUser):
+@app.route('/missingYou/api/v1.0/validarLogin', methods=['POST'])
+def validarLogin():
 	try:
 		conexao = psycopg2.connect(database="MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
                                    host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
  		return 'nao conectou ao banco', 503
+
+	data = request.get_json()
 	cur = conexao.cursor()
-	sql = 'SELECT * FROM usuario WHERE emailUser =' + "'" + str(emailUser) + "'" + 'and senhaUser=' + "'" + str(
-        senhaUser) + "'"
+	sql = 'SELECT * FROM usuario WHERE emailUser =' + "'" + str(data["emailUser"]) + "'" + 'and senhaUser=' + "'" + str(
+        data["senhaUser"]) + "'"
 	cur.execute(sql)
 	consulta = cur.fetchall()
 		
@@ -71,31 +72,10 @@ def selecionarUsuario(idUser):
 	cur.execute(sql)
 	consulta = cur.fetchall()
 	consultaEmDict = [{'idUser': elemento[0], 'nomeUser': elemento[1], 'emailUser': elemento[2],
-			   'cpfUser':elemento[3], 'contatoUser': elemento[4], 'senhaUser': elemento[5], 
-			   'imagemUser':elemento[6]} for elemento in consulta]
+			   'cpfUser':elemento[3], 'contatoUser': elemento[4], 'imagemUser':elemento[6]} for elemento in consulta]
 	return jsonify(consultaEmDict)
 
-@app.route('/missingYou/api/v1.0/validarSenha/<string:emailUser>/<string:senhaUser>', methods=['GET'])
-def validarSenha(emailUser, senhaUser):
-	try:
-		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
-						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
-	except:
-		return 'nao conectou ao banco',503
-	cur = conexao.cursor()
-	sql = 'SELECT * FROM usuario WHERE emailUser =' + "'" + str(emailUser) + "'" + 'and senhaUser=' + "'" + str(senhaUser) + "'"
-	cur.execute(sql)
-	consulta = cur.fetchall()
 
-	if (consulta):
-		return 'senha invalida', 412
-	else:
-		return 'id nao foi encontrado',412
-
-	return 'operacao foi realizada com sucesso',200
-
-
-@app.route('/missingYou/api/v1.0/validarCpf/<string:cpf>', methods=['GET'])
 def validarCpf(cpf):
 	if (len(cpf) == 11):
 		# Calcular primeiro digito verificador
@@ -126,52 +106,52 @@ def validarCpf(cpf):
 	else:
 		return 'cpf invalido',412
 
-@app.route('/missingYou/api/v1.0/attImagem/<int:idUser>/<string:imagem>', methods=['GET'])
-def attImagem(idUser, imagem):
+@app.route('/missingYou/api/v1.0/attImagem/<int:idUser>/<string:imagem>', methods=['PUT'])
+def attImagem(idUser):
 	
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	cur = conexao.cursor()
 	sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
 	cur.execute(sql)
 	consulta = cur.fetchall()
 
 	if (consulta):
-		sql = 'UPDATE usuario SET imagem = ' + "'" + imagem + "'" + " WHERE idUser = " + str(idUser)
+		sql = 'UPDATE usuario SET imagem = ' + "'" + data["imagem"] + "'" + " WHERE idUser = " + str(idUser)
 		cur.execute(sql)
 		conexao.commit()
 		return 'operacao foi realizada com sucesso',200
 	else:
 		return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/attNomeUser/<int:idUser>/<string:nomeUser>', methods=['GET'])
-def attNomeUser(idUser, nomeUser):
+@app.route('/missingYou/api/v1.0/attNomeUser/<int:idUser>', methods=['PUT'])
+def attNomeUser(idUser):
 	
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	cur = conexao.cursor()
 	sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
 	cur.execute(sql)
 	consulta = cur.fetchall()
 
 	if (consulta):
-		sql = 'UPDATE usuario SET nomeUser = ' + "'" + nomeUser + "'" + " WHERE idUser = " + str(idUser)
+		sql = 'UPDATE usuario SET nomeUser = ' + "'" + data["nomeUser"] + "'" + " WHERE idUser = " + str(idUser)
 		cur.execute(sql)
 		conexao.commit()
 		return 'operacao foi realizada com sucesso',200
 	else:
 		return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/attContatoUsuario/<int:idUser>/<string:contatoUser>', methods=['GET'])
-def UpdateContatoUser(idUser, contatoUser):
+@app.route('/missingYou/api/v1.0/attContatoUsuario/<int:idUser>', methods=['PUT'])
+def UpdateContatoUser(idUser):
 	
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
@@ -179,6 +159,7 @@ def UpdateContatoUser(idUser, contatoUser):
 	except:
 		return 'nao conectou ao banco',503
 
+	data = request.get_json()
 	cur = conexao.cursor()
 	sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
 	cur.execute(sql)
@@ -186,22 +167,22 @@ def UpdateContatoUser(idUser, contatoUser):
 
 	if (consulta):
 		if(len(contatoUser) == 11):
-			sql = 'UPDATE usuario SET contatoUser = ' + "'" + str(contatoUser) + "'" + " WHERE idUser = " + str(idUser)
+			sql = 'UPDATE usuario SET contatoUser = ' + "'" + str(data["contatoUser"]) + "'" + " WHERE idUser = " + str(idUser)
 			cur.execute(sql)
 			conexao.commit()
 			return 'operacao foi realizada com sucesso',200
 		return 'contato invalido',412
 	return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/attSenhaUsuario/<int:idUser>/<string:senhaUser>', methods=['GET'])
-def attSenhaUsuario(idUser, senhaUser):
+@app.route('/missingYou/api/v1.0/attSenhaUsuario/<int:idUser>', methods=['PUT'])
+def attSenhaUsuario(idUser):
 	
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	cur = conexao.cursor()
 	sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
 	cur.execute(sql)
@@ -209,43 +190,43 @@ def attSenhaUsuario(idUser, senhaUser):
 
 	if (consulta):
 		if(len(senhaUser) >= 6):
-			sql = 'UPDATE usuario SET senhauser = ' + str(senhaUser) + " WHERE idUser = " + str(idUser)
+			sql = 'UPDATE usuario SET senhauser = ' + str(data["senhaUser"]) + " WHERE idUser = " + str(idUser)
 			cur.execute(sql)
 			conexao.commit()
 		return 'operacao foi realizada com sucesso',200
 		return 'senha invalida',412
 	return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/attCpfUsuario/<int:idUser>/<string:cpfUser>', methods=['GET'])
-def attCpfUsuario(idUser, cpfUser):
+@app.route('/missingYou/api/v1.0/attCpfUsuario/<int:idUser>', methods=['PUT'])
+def attCpfUsuario(idUser):
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	cur = conexao.cursor()
 	sql = 'SELECT cpfUser FROM usuario WHERE idUser =' + str(idUser)
 	cur.execute(sql)
 	consulta = cur.fetchall()
 	if(consulta):
 		if(validarCpf(cpfUser) == 'operacao foi realizada com sucesso',200):
-			sql = 'UPDATE usuario SET cpfUser = ' + "'" + str(cpfUser) + "'" + " WHERE idUser = " + str(idUser)
+			sql = 'UPDATE usuario SET cpfUser = ' + "'" + str(data["cpfUser"]) + "'" + " WHERE idUser = " + str(idUser)
 			cur.execute(sql)
 			conexao.commit()
 			return 'operacao foi realizada com sucesso',200
 		return 'cpf invalido',412
 	return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/attEmailUsuario/<int:idUser>/<string:emailUser>', methods=['GET'])
-def attEmailUsuario(idUser, emailUser):
+@app.route('/missingYou/api/v1.0/attEmailUsuario/<int:idUser>', methods=['PUT'])
+def attEmailUsuario(idUser):
 
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-	
+	data = request.get_json()
 	cur = conexao.cursor()
 	sql = 'SELECT * FROM usuario WHERE idUser =' + str(idUser)
 	cur.execute(sql)
@@ -253,14 +234,14 @@ def attEmailUsuario(idUser, emailUser):
 
 	if (consulta):
 		if(validarEmail(emailUser) == 'operacao foi realizada com sucesso',200):
-			sql = 'UPDATE usuario SET emailUser = ' + "'" + emailUser + "'" + " WHERE idUser = " + str(idUser)
+			sql = 'UPDATE usuario SET emailUser = ' + "'" + data["emailUser"] + "'" + " WHERE idUser = " + str(idUser)
 			cur.execute(sql)
 			conexao.commit()
 			return 'operacao foi realizada com sucesso',200
 		return 'email invalido',412
 	return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/excluirUsuario/<int:idUser>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/excluirUsuario/<int:idUser>', methods=['DELETE'])
 def excluirUsuario(idUser):
 	
 	try:
@@ -304,7 +285,6 @@ def excluirUsuario(idUser):
 	else:
 		return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/validaDataParaBo/<string:dataDes>', methods=['GET'])
 def validarDataParaBO(dataDes):
 	"""
 	return 1 -> nao precisa informar B.O.
@@ -355,16 +335,17 @@ def cadastrarUsuario():
 		return 'email invalido ou email ja cadastrado no sistema',412
 	return 'id nao foi encontrado',412
 
-@app.route('/missingYou/api/v1.0/cadastrarCampanha/<int:id_campanha>/<int:id_user>/<string:status>/<string:datanasc>/<string:nome_des>/<string:idade_des>/<string:sexo_des>/<string:olhos>/<string:raca>/<string:cabelo>/<string:data_des>/<string:bo>/<string:descricao>', methods=['GET'])
-def cadastrarCampanha(id_campanha, id_user,  status, datanasc, nome_des, idade_des, sexo_des, olhos, raca, cabelo, data_des, bo, descricao):
+@app.route('/missingYou/api/v1.0/cadastrarCampanha', methods=['POST'])
+def cadastrarCampanha():
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
 
+	data = request.get_json()
 	cur = banco.cursor()
-	sql = "SELECT * FROM usuario WHERE usuario.iduser = " + str(id_user)
+	sql = "SELECT * FROM usuario WHERE usuario.iduser = " + str(data["idUser"])
 	resultado = None
 	cur.execute(sql)
 	resultado = cur.fetchall();
@@ -373,7 +354,7 @@ def cadastrarCampanha(id_campanha, id_user,  status, datanasc, nome_des, idade_d
 	if(resultado):
 		#verificando se a campanha ja esta cadastrada
 		cur = banco.cursor()
-		sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
+		sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos = " + str(data["idCampanhas"])
 		resultado = None
 		cur.execute(sql)
 		resultado = cur.fetchall();
@@ -382,9 +363,9 @@ def cadastrarCampanha(id_campanha, id_user,  status, datanasc, nome_des, idade_d
 		if(resultado):
 			return 'campanha ja cadastrada',412
 		else:
-			if(validarDataParaBO(data_des) == 'nao precisa informar B.O.',200):
+			if(validarDataParaBO(data["dataDesaparecimento"]) == 'nao precisa informar B.O.',200):
 				cur = banco.cursor()                                                                                                                                                     
-				sql = "INSERT INTO campanhasperdidos(idcampanhasperdidos, iduser, statuscampanhasperdidos, datanascimento, nomedesaparecido, idadedesaparecido, sexodesaparecido, olhosdesaparecido, racadesaparecido, cabelodesaparecido, datadesaparecimento, datacampanha, bo, descricao) values (" + str(id_campanha) + ", " + str(id_user) + ", " + "'"+str(status)+"'"+ ", " + "'"+str(datanasc)+"'"+ ", " + "'"+str(nome_des)+"'" + ", " + "'"+str(idade_des)+"'"+ ", "+ "'"+str(sexo_des)+"'" + ", " + "'"+str(olhos)+"'"+ ", "+ "'"+str(raca)+"'" + ", " + "'"+str(cabelo)+"'" + ", " + "'"+str(data_des)+"'" + ", " + "'"+str(data_camp)+"'" + ", " + "'"+str(bo)+"'"+  ", " + "'"+str(descricao)+"'" + ")"
+				sql = "INSERT INTO campanhasperdidos(idcampanhasperdidos, iduser, statuscampanhasperdidos, datanascimento, nomedesaparecido, idadedesaparecido, sexodesaparecido, olhosdesaparecido, racadesaparecido, cabelodesaparecido, datadesaparecimento, datacampanha, bo, descricao) values (" + str(data["idCampanhas"]) + ", " + str(data["idUser"]) + ", " + "'"+str(data["statusCampanhas"])+"'"+ ", " + "'"+str(data["dataNasc"])+"'"+ ", " + "'"+str(data["nomeDesaparecido"])+"'" + ", " + "'"+str(data["idadeDesaparecido"])+"'"+ ", "+ "'"+str(data["sexoDesaparecido"])+"'" + ", " + "'"+str(data["olhosDesaparecido"])+"'"+ ", "+ "'"+str(data["racaDesaparecido"])+"'" + ", " + "'"+str(data["cabeloDesaparecido"])+"'" + ", " + "'"+str(data["dataDesaparecimento"])+"'" + ", " + "'"+str(data_camp)+"'" + ", " + "'"+str(data["bo"])+"'"+  ", " + "'"+str(data["descricao"])+"'" + ")"
 				cur.execute(sql)
 				banco.commit()
 				cur.close()
@@ -479,14 +460,14 @@ def selecionarCampanhaUser(id_user): #seleciona as campanhas cadastradas por um 
 	else:
 		return 'id_usuario nao encontrado',412
 
-@app.route('/missingYou/api/v1.0/alterarStatusCampanha/<int:id_campanha>/<string:status>', methods=['GET'])
-def alterarStatus(id_campanha, status): #altera o status de uma campanha
+@app.route('/missingYou/api/v1.0/alterarStatusCampanha/<int:id_campanha>', methods=['PUT'])
+def alterarStatus(id_campanha): #altera o status de uma campanha
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha) 
 	resultado = None
 	cur = banco.cursor()
@@ -494,7 +475,7 @@ def alterarStatus(id_campanha, status): #altera o status de uma campanha
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET statuscampanhasperdidos = " + "'"+str(status)+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET statuscampanhasperdidos = " + "'"+str(dat["status"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -503,14 +484,14 @@ def alterarStatus(id_campanha, status): #altera o status de uma campanha
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/alterarNomeDesaparecido/<int:id_campanha>/<string:nome>', methods=['GET'])
-def alterarNome(id_campanha, nome):
+@app.route('/missingYou/api/v1.0/alterarNomeDesaparecido/<int:id_campanha>', methods=['PUT'])
+def alterarNome(id_campanha):
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
 	resultado = None
 	cur = banco.cursor()
@@ -518,7 +499,7 @@ def alterarNome(id_campanha, nome):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET nomedesaparecido = " + "'"+str(nome)+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET nomedesaparecido = " + "'"+str(data["nome"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -527,14 +508,14 @@ def alterarNome(id_campanha, nome):
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/alterarCabeloDesaparecido/<int:id_campanha>/<string:cabelo>', methods=['GET'])
-def alterarCabelo(id_campanha, cabelo):
+@app.route('/missingYou/api/v1.0/alterarCabeloDesaparecido/<int:id_campanha>', methods=['PUT'])
+def alterarCabelo(id_campanha):
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
 	resultado = None
 	cur = banco.cursor()
@@ -542,7 +523,7 @@ def alterarCabelo(id_campanha, cabelo):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET cabelodesaparecido = " + "'"+str(cabelo)+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET cabelodesaparecido = " + "'"+str(data["cabelo"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -551,14 +532,15 @@ def alterarCabelo(id_campanha, cabelo):
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/alterarRacaDesaparecido/<int:id_campanha>/<string:raca>', methods=['GET'])
-def alterarRaca(id_campanha, raca):
+@app.route('/missingYou/api/v1.0/alterarRacaDesaparecido/<int:id_campanha>', methods=['PUT'])
+def alterarRaca(id_campanha):
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	
+	data = request.get_json()
 	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha) 
 	resultado = None
 	cur = banco.cursor()
@@ -566,7 +548,7 @@ def alterarRaca(id_campanha, raca):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET racadesaparecido = " + "'"+str(raca)+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET racadesaparecido = " + "'"+str(data["raca"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -575,14 +557,14 @@ def alterarRaca(id_campanha, raca):
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/alterarIdadeDesaparecido/<int:id_campanha>/<string:idade>', methods=['GET'])
-def alterarIdade(id_campanha, idade):
+@app.route('/missingYou/api/v1.0/alterarIdadeDesaparecido/<int:id_campanha>', methods=['PUT'])
+def alterarIdade(id_campanha):
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha) 
 	resultado = None
 	cur = banco.cursor()
@@ -590,7 +572,7 @@ def alterarIdade(id_campanha, idade):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET idadedesaparecido = " + "'"+str(idade)+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET idadedesaparecido = " + "'"+str(data["idade"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -599,13 +581,15 @@ def alterarIdade(id_campanha, idade):
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/alterarSexoDesaparecido/<int:id_campanha>/<string:sexo>', methods=['GET'])
-def alterarSexo(id_campanha, sexo):
+@app.route('/missingYou/api/v1.0/alterarSexoDesaparecido/<int:id_campanha>', methods=['PUT'])
+def alterarSexo(id_campanha):
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
+
+	data = request.get_json()
 	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha) 
 	resultado = None
 	cur = banco.cursor()
@@ -613,7 +597,7 @@ def alterarSexo(id_campanha, sexo):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET sexodesaparecido = " + "'"+str(sexo)+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET sexodesaparecido = " + "'"+str(data["sexo"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -622,7 +606,7 @@ def alterarSexo(id_campanha, sexo):
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/excluirCampanha/<int:id_campanha>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/excluirCampanha/<int:id_campanha>', methods=['DELETE'])
 def excluirCampanha(id_campanha): #exclui a campanha
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
@@ -647,21 +631,22 @@ def excluirCampanha(id_campanha): #exclui a campanha
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/alterarBO/<int:id_campanha>/<string:bo>', methods=['GET'])
-def alterarBO(id_campanha, bo): #altera o B.O. de uma campanha
+@app.route('/missingYou/api/v1.0/alterarBO/<int:id_campanha>', methods=['PUT'])
+def alterarBO(id_campanha): #altera o B.O. de uma campanha
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
 
+	data = request.get_json()
 	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.bo = 'null' and campanhasperdidos.idcampanhasperdidos = " + str(id_campanha) 
 	resultado = None
 	cur = banco.cursor()
 	cur.execute(sql)
 	resultado = cur.fetchall();
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET bo = " + "'"+str(bo)+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET bo = " + "'"+str(data["bo"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -670,22 +655,22 @@ def alterarBO(id_campanha, bo): #altera o B.O. de uma campanha
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/alterarDescricao/<int:id_campanha>/<string:descricao>', methods=['GET'])
-def alterarDescricao(id_campanha, descricao):
+@app.route('/missingYou/api/v1.0/alterarDescricao/<int:id_campanha>', methods=['PUT'])
+def alterarDescricao(id_campanha):
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
-	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha) 
+	data = request.get_json()
+	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
 	resultado = None
 	cur = banco.cursor()
 	cur.execute(sql)
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET descricao = " + "'"+str(descricao)+"'" + "WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET descricao = " + "'"+str(data["descricao"])+"'" + "WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -694,8 +679,8 @@ def alterarDescricao(id_campanha, descricao):
 	else:
 		return 'id_campanha nao foi encontrada', 412
 
-@app.route('/missingYou/api/v1.0/inserirLocalCampanha/<int:id_campanha>/<int:lat>/<int:lon>/<string:data>/<string:bairro>', methods=['GET'])
-def inserirLocalCampanha(id_campanha, lat, lon, data, bairro):
+@app.route('/missingYou/api/v1.0/inserirLocalCampanha', methods=['POST'])
+def inserirLocalCampanha():
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
@@ -703,7 +688,8 @@ def inserirLocalCampanha(id_campanha, lat, lon, data, bairro):
 		return 'nao conectou ao banco',503
 
 	# Checando se campanha existe
-	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
+	data = request.get_json()
+	sql = "SELECT * FROM campanhasperdidos " + " WHERE campanhasperdidos.idcampanhasperdidos = " + str(data["id_campanha"])
 	resultado = None
 	cur = banco.cursor()
 	cur.execute(sql)
@@ -711,7 +697,7 @@ def inserirLocalCampanha(id_campanha, lat, lon, data, bairro):
 
 	if(resultado):
 		cur = banco.cursor()
-		sql = "INSERT INTO attlocalizacaocampanhasperdidos(idcampanhasperdidos, latitude, longitude, attdata, attbairro) VALUES("+ str(id_campanha) + ", "  + str(lat) + ", " + str(lon) + ", " + "'"+str(data)+"'" + ", " + "'"+str(bairro)+"'" + ")"
+		sql = "INSERT INTO attlocalizacaocampanhasperdidos(idcampanhasperdidos, latitude, longitude, attdata, attbairro) VALUES("+ str(data["id_campanha"]) + ", "  + str(data["latitude"]) + ", " + str(data["longitude"]) + ", " +"'"+str(data["attdata"])+"'"+ ", " + "'"+str(data["attbairro"])+"'" + ")"
 		cur.execute(sql)
 		banco.commit()
 		cur.close()
@@ -752,9 +738,9 @@ def selecionarCampanhaBairro(bairro): #seleciona as campanhas por bairro
 	except:
 		return 'nao conectou ao banco',503
 
-	sql = "SELECT * FROM attlocalizacaocampanhasperdidos " + " WHERE attlocalizacaocampanhasperdidos.attbairro = " + "'"+str(bairro)+"'"
+	sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos IN (SELECT idcampanhasperdidos FROM attlocalizacaocampanhasperdidos  WHERE attlocalizacaocampanhasperdidos.attbairro = " + "'"+str(bairro)+"'" + ")" 
 	resultado = None
-	cur = self.banco.cursor()
+	cur = banco.cursor()
 	cur.execute(sql)
 	resultado = cur.fetchall();
 	cur.close()
@@ -762,15 +748,18 @@ def selecionarCampanhaBairro(bairro): #seleciona as campanhas por bairro
 	if(resultado):
 		for elemento in resultado:
 			consultaCollec = collections.OrderedDict()
-			consultaCollec = {'idCampanhas': elemento[0], 'longitude': elemento[1], 'latitude': elemento[2],
-			   'data':elemento[3], 'bairro': elemento[4]}
+			consultaCollec = {'idCampanhas': elemento[0], 'idUser': elemento[1], 'statusCampanhas': elemento[2],
+			   'dataNasc':elemento[3], 'nomeDesaparecido': elemento[4], 'idadeDesaparecido': elemento[5], 
+			   'sexoDesaparecido':elemento[6],'olhosDesaparecido':elemento[7], 'racaDesaparecido':elemento[8],
+			   'cabeloDesaparecido':elemento[9], 'dataDesaparecimento':elemento[10], 'dataCampanha':elemento[11],
+			   'bo':elemento[12], 'descricao':elemento[13]}
 			resultList.append(consultaCollec)
 		return jsonify(resultList)
 	else:
 		return 'id_campanha nao foi encontrado', 412
 
-@app.route('/missingYou/api/v1.0/alterarLocal/<int:id_campanha>/<int:lat>/<int:lon>/<string:data>/<string:bairro>', methods=['GET'])
-def alterarLocal(id_campanha, lat, lon, data, bairro):
+@app.route('/missingYou/api/v1.0/alterarLocal/<int:id_campanha>', methods=['PUT'])
+def alterarLocal(id_campanha):
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
@@ -778,6 +767,7 @@ def alterarLocal(id_campanha, lat, lon, data, bairro):
 		return 'nao conectou ao banco',503
 
 	# VERIFICANDO SE A CAMPANHA EXISTE
+	data = request.get_json()
 	sql = "SELECT * FROM attlocalizacaocampanhasperdidos " + " WHERE attlocalizacaocampanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
 	resultado = None
 	cur = banco.cursor()
@@ -786,7 +776,7 @@ def alterarLocal(id_campanha, lat, lon, data, bairro):
 	cur.close()
 
 	if(resultado):
-		sql = "UPDATE attlocalizacaocampanhasperdidos" + " SET latitude = " + str(lat) + ", longitude = " + str(lon) + ", attdata = " + "'"+str(data)+"'" + ", attbairro = " + "'"+str(bairro)+"'" + " WHERE idcampanhasperdidos = " + "'"+str(id_campanha)+"'"
+		sql = "UPDATE attlocalizacaocampanhasperdidos" + " SET latitude = " + str(data["lat"]) + ", longitude = " + str(data["lon"]) + ", attdata = " + "'"+str(data["data"])+"'" + ", attbairro = " + "'"+str(data["bairro"])+"'" + " WHERE idcampanhasperdidos = " + "'"+str(id_campanha)+"'"
 		cur = self.banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -795,7 +785,7 @@ def alterarLocal(id_campanha, lat, lon, data, bairro):
 	else:
 		return 'id_campanha nao foi encontrado', 412
 
-@app.route('/missingYou/api/v1.0/excluirCampanhaLocalizacao/<int:id_campanha>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/excluirCampanhaLocalizacao/<int:id_campanha>', methods=['DELETE'])
 def excluirCampanhaLocalizacao(id_campanha):
         # VERIFICANDO SE A CAMPANHA EXISTE
 	try:
@@ -820,17 +810,17 @@ def excluirCampanhaLocalizacao(id_campanha):
 	else:
 		return 'id_campanha nao foi encontrado', 412
 
-@app.route('/missingYou/api/v1.0/inserirCampanhaSalvas/<int:id_campanha>/<int:id_user>', methods=['GET'])
-def inserirCampanhaSalvas(id_campanha, id_user): # ver se precisa tratar o caso da campanha ja estar cadastrada
+@app.route('/missingYou/api/v1.0/inserirCampanhaSalvas', methods=['POST'])
+def inserirCampanhaSalvas(): # ver se precisa tratar o caso da campanha ja estar cadastrada
         #   VERIFICANDO SE O USUARIO EXISTE
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
-
+	data = request.get_json()
 	cur = banco.cursor()
-	sql = "SELECT * FROM usuario WHERE usuario.iduser = " + str(id_user)
+	sql = "SELECT * FROM usuario WHERE usuario.iduser = " + str(data["id_user"])
 	resultado = None
 	cur.execute(sql)
 	resultado = cur.fetchall();
@@ -839,7 +829,7 @@ def inserirCampanhaSalvas(id_campanha, id_user): # ver se precisa tratar o caso 
 	if(resultado):
 		#   VERIFICANDO SE CAMPANHA EXISTE
 		cur = banco.cursor()
-		sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
+		sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos = " + str(data["id_campanha"])
 		resultado = None
 		cur.execute(sql)
 		resultado = cur.fetchall();
@@ -847,7 +837,7 @@ def inserirCampanhaSalvas(id_campanha, id_user): # ver se precisa tratar o caso 
             
 		if(resultado):
 			cur = banco.cursor()
-			sql = "SELECT * FROM campanhassalvas WHERE campanhassalvas.idusuario = " + str(id_user) + "and campanhassalvas.idcampanhasperdidos =  " + str(id_campanha)
+			sql = "SELECT * FROM campanhassalvas WHERE campanhassalvas.idusuario = " + str(data["id_user"]) + "and campanhassalvas.idcampanhasperdidos =  " + str(data["id_campanha"])
 			resultado = None
 			cur.execute(sql)
 			resultado = cur.fetchall();
@@ -856,7 +846,7 @@ def inserirCampanhaSalvas(id_campanha, id_user): # ver se precisa tratar o caso 
 				return 'campanha ja salva', 412
 			else:
 				cur = banco.cursor()
-				sql = "INSERT INTO campanhassalvas(idusuario, idcampanhasperdidos) VALUES("+ str(id_user)  + ", " + str(id_campanha)  + ")"
+				sql = "INSERT INTO campanhassalvas(idusuario, idcampanhasperdidos) VALUES("+ str(data["id_user"])  + ", " + str(data["id_campanha"])  + ")"
 				cur.execute(sql)
 				banco.commit()
 				cur.close()
@@ -917,7 +907,7 @@ def selecionarCampanhaIdUser(id_user): #seleciona as campanhas cadastradas por u
 	else:
 		return 'id_campanha nao foi encontrado', 412
 
-@app.route('/missingYou/api/v1.0/excluirCampanhasDoUsuario/<int:id_user>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/excluirCampanhasDoUsuario/<int:id_user>', methods=['DELETE'])
 def excluirCampanhasDoUsuario(id_user):  # exclui todas as campanhas cadastradas por aquele usuario
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
@@ -943,7 +933,7 @@ def excluirCampanhasDoUsuario(id_user):  # exclui todas as campanhas cadastradas
 	else:
 		return 'id_campanha nao foi encontrado', 412
 
-@app.route('/missingYou/api/v1.0/excluirCampanhaSalva/<int:id_campanha>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/excluirCampanhaSalva/<int:id_campanha>', methods=['DELETE'])
 def excluirCampanhaSalva(id_campanha): #exclui a campanha
 	try:
 		banco = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
@@ -966,8 +956,8 @@ def excluirCampanhaSalva(id_campanha): #exclui a campanha
 	else:
 		return 'id_campanha nao foi encontrado', 412
 
-@app.route('/missingYou/api/v1.0/inserirImgCampanha/<int:id_campanha>/<string:imagem>', methods=['GET'])	
-def inserirImgCampanha(id_campanha, imagem): # ver se precisa tratar o caso da campanha ja estar cadastrada
+@app.route('/missingYou/api/v1.0/inserirImgCampanha', methods=['POST'])	
+def inserirImgCampanha(): # ver se precisa tratar o caso da campanha ja estar cadastrada
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
@@ -975,8 +965,9 @@ def inserirImgCampanha(id_campanha, imagem): # ver se precisa tratar o caso da c
 		return 'nao conectou ao banco',503
 
 	#   VERIFICANDO SE CAMPANHA EXISTE
+	data = request.get_json()
 	cur = banco.cursor()
-	sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos = " + str(id_campanha)
+	sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos = " + str(data["id_campanha"])
 	resultado = None
 	cur.execute(sql)
 	resultado = cur.fetchall();
@@ -984,14 +975,14 @@ def inserirImgCampanha(id_campanha, imagem): # ver se precisa tratar o caso da c
             
 	if(resultado):
 		cur = banco.cursor()
-		sql = "SELECT * FROM imagens WHERE imagens.imagem = " + "'"+str(imagem)+"'"
+		sql = "SELECT * FROM imagens WHERE imagens.imagem = " + "'"+str(data["imagem"])+"'"
 		resultado = None
 		cur.execute(sql)
 		resultado = cur.fetchall();
 		cur.close()
 		if(resultado):
 			cur = self.banco.cursor()
-			sql = "SELECT * FROM CampanhasPerdidos_Imagens WHERE CampanhasPerdidos_Imagens.imagem = " + "'"+str(imagem)+"'" + "and CampanhasPerdidos_Imagens.idcampanhasperdidos = " + str(id_campanha)
+			sql = "SELECT * FROM CampanhasPerdidos_Imagens WHERE CampanhasPerdidos_Imagens.imagem = " + "'"+str(data["imagem"])+"'" + "and CampanhasPerdidos_Imagens.idcampanhasperdidos = " + str(data["id_campanha"])
 			resultado = None
 			cur.execute(sql)
 			resultado = cur.fetchall();
@@ -1000,7 +991,7 @@ def inserirImgCampanha(id_campanha, imagem): # ver se precisa tratar o caso da c
 				return 'campanha ja cadastrada', 412
 			else:
 				cur = banco.cursor()
-				sql = "INSERT INTO CampanhasPerdidos_Imagens(idCampanhasPerdidos, imagem) VALUES("+ str(id_campanha)  + ", " + "'"+str(imagem)+"'"  + ")"
+				sql = "INSERT INTO CampanhasPerdidos_Imagens(idCampanhasPerdidos, imagem) VALUES("+ str(data["id_campanha"])  + ", " + "'"+str(data["imagem"])+"'"  + ")"
 				cur.execute(sql)
 				banco.commit()
 				cur.close()
@@ -1034,7 +1025,7 @@ def selecionarImagemCampanha(id_campanha): #seleciona campanha daquele id
 	else:
 		return 'imagem nao encontrada', 412
 
-@app.route('/missingYou/api/v1.0/ExcluirImagem/<int:id_campanha>/<string:imagem>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/ExcluirImagem/<int:id_campanha>/<string:imagem>', methods=['DELETE'])
 def excluirImagem(id_campanha, imagem):  # exclui todas as campanhas cadastradas por aquele usuario
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
@@ -1057,29 +1048,29 @@ def excluirImagem(id_campanha, imagem):  # exclui todas as campanhas cadastradas
 	else:
 		return 'id_campanha nao foi encontrado', 412
 
-@app.route('/missingYou/api/v1.0/cadastrarNotificacoes/<int:idnotificacao>/<int:idusuario>/<int:idcampanhasperdidos>/<string:descricao>/<string:dataatt>', methods=['GET'])
-def cadastraNotificacoes(idnotificacao, idusuario, idcampanhasperdidos, descricao, dataatt):
+@app.route('/missingYou/api/v1.0/cadastrarNotificacoes', methods=['POST'])
+def cadastraNotificacoes():
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
 						 host="missingyoudb.ce2hc9ksfuzl.sa-east-1.rds.amazonaws.com", port="5432")
 	except:
 		return 'nao conectou ao banco',503
 
-
+	data = request.get_json()
 	cur = conexao.cursor()
-	sql = 'SELECT * FROM campanhasperdidos WHERE idcampanhasperdidos =' + str(idcampanhasperdidos)
+	sql = 'SELECT * FROM campanhasperdidos WHERE idcampanhasperdidos =' + str(data["idcampanhasperdidos"])
 	cur.execute(sql)
 	consulta1 = cur.fetchall()
 
 	cur = conexao.cursor()
-	sql1 = 'SELECT * FROM usuario WHERE iduser =' + str(idusuario)
+	sql1 = 'SELECT * FROM usuario WHERE iduser =' + str(data["idusuario"])
 	cur.execute(sql1)
 	consulta = cur.fetchall()
 	print(consulta1)
 	print(consulta)
 	if (consulta1 and consulta):
-		sql = "INSERT INTO Notificacoes(idnotificacao, idusuario, idcampanhasperdidos,descricao, dataatt) VALUES" + "(" + str(idnotificacao) + "," + str(idusuario) + "," + str(
-		idcampanhasperdidos) + "," + "'" + descricao + "'" + "," + "'" + dataatt + "'" + ")"
+		sql = "INSERT INTO Notificacoes(idnotificacao, idusuario, idcampanhasperdidos,descricao, dataatt) VALUES" + "(" + str(data["idnotificacao"]) + "," + str(data["idusuario"]) + "," + str(
+		data["idcampanhasperdidos"]) + "," + "'" + data["descricao"] + "'" + "," + "'" + data["dataatt"] + "'" + ")"
 		cur.execute(sql)
 		conexao.commit()
 		return 'operacao realizada com sucesso', 200
@@ -1087,7 +1078,7 @@ def cadastraNotificacoes(idnotificacao, idusuario, idcampanhasperdidos, descrica
 		return 'id nao foi encontrado', 412
 
 
-@app.route('/missingYou/api/v1.0/excluirNotificacoes/<int:idUser>', methods=['GET'])
+@app.route('/missingYou/api/v1.0/excluirNotificacoes/<int:idUser>', methods=['DELETE'])
 def excluirNotificacoes(idUser):
 	try:
 		conexao = psycopg2.connect(database= "MissingYouBanco", user="Missingyouufc", password="Missingyouufc2018",
