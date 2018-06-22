@@ -1077,7 +1077,7 @@ def cadastraNotificacoes():
 	print(consulta1)
 	print(consulta)
 	if (consulta1 and consulta):
-		sql = "INSERT INTO Notificacoes(idnotificacao, idusuario, idcampanhasperdidos,descricao, dataatt) VALUES" + "(" + str(data["idnotificacao"]) + "," + str(data["idusuario"]) + "," + str(
+		sql = "INSERT INTO Notificacoes(idusuario, idcampanhasperdidos,descricao, dataatt) VALUES" + "(" + str(data["idusuario"]) + "," + str(
 		data["idcampanhasperdidos"]) + "," + "'" + data["descricao"] + "'" + "," + "'" + data["dataatt"] + "'" + ")"
 		cur.execute(sql)
 		conexao.commit()
