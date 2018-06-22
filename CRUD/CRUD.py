@@ -53,7 +53,7 @@ def validarLogin():
 	if (consulta):
 		consultaEmDict = [{'idUser': elemento[0], 'nomeUser': elemento[1], 'emailUser': elemento[2],
 			   'cpfUser':elemento[3], 'contatoUser': elemento[4], 
-			   'imagemUser':elemento[6]} for elemento in consulta]
+			   'imagem2':elemento[6]} for elemento in consulta]
 		return jsonify(consultaEmDict)
 
 	else:
@@ -72,7 +72,7 @@ def selecionarUsuario(idUser):
 	cur.execute(sql)
 	consulta = cur.fetchall()
 	consultaEmDict = [{'idUser': elemento[0], 'nomeUser': elemento[1], 'emailUser': elemento[2],
-			   'cpfUser':elemento[3], 'contatoUser': elemento[4], 'imagemUser':elemento[6]} for elemento in consulta]
+			   'cpfUser':elemento[3], 'contatoUser': elemento[4], 'imagem2':elemento[6]} for elemento in consulta]
 	return jsonify(consultaEmDict)
 
 
@@ -121,7 +121,7 @@ def attImagem(idUser):
 	consulta = cur.fetchall()
 
 	if (consulta):
-		sql = 'UPDATE usuario SET imagem = ' + "'" + data["imagem"] + "'" + " WHERE idUser = " + str(idUser)
+		sql = 'UPDATE usuario SET imagem = ' + "'" + data["imagem2"] + "'" + " WHERE idUser = " + str(idUser)
 		cur.execute(sql)
 		conexao.commit()
 		return 'operacao foi realizada com sucesso',200
@@ -301,6 +301,7 @@ def validarDataParaBO(dataDes):
 		return 'precisa informar B.O.',412
 
 @app.route('/missingYou/api/v1.0/cadastrarUsuario', methods=['POST'])
+@app.route('/missingYou/api/v1.0/cadastrarUsuario', methods=['POST'])
 def cadastrarUsuario():
 	
 	try:
@@ -309,10 +310,9 @@ def cadastrarUsuario():
 	except:
 		return 'nao conectou ao banco',503
 	data = request.get_json()
-	#data = data.load()
 
 	cur = conexao.cursor()
-	sql = 'SELECT * FROM usuario WHERE idUser =' + str(data["idUser"])
+	sql = 'SELECT * FROM usuario WHERE emailUser =' + str(data["emailUser"])
 	cur.execute(sql)
 	consulta = cur.fetchall()
 
@@ -326,7 +326,7 @@ def cadastrarUsuario():
 		if(not consulta2):
 			if(validarDados(data["senhaUser"],["emailUser"],["contatoUser"]) == 'operacao realizada com sucesso',200):
 				if(validarCpf(data["cpfUser"]) == 'operacao realizada com sucesso',200 or cpfUser == 'NULL'):
-					sql = "INSERT INTO usuario (idUser,nomeUser, emailUser,cpfUser,contatoUser,senhaUser, imagem ) VALUES" + "(" + str(data["idUser"]) + "," + "'"+data["nomeUser"] + "'"+ "," + "'"+ data["emailUser"] + "'"+"," + "'"+data["cpfUser"] + "'"+"," + "'"+  data["contatoUser"] + "'" + "," + "'"+ data["senhaUser"] + "'"+ "," + "'"+data["imagemUser"] + "'" ")"
+					sql = "INSERT INTO usuario (nomeUser, emailUser,cpfUser,contatoUser,senhaUser, imagem ) VALUES" + "(" + "'"+data["nomeUser"] + "'"+ "," + "'"+ data["emailUser"] + "'"+"," + "'"+data["cpfUser"] + "'"+"," + "'"+  data["contatoUser"] + "'" + "," + "'"+ data["senhaUser"] + "'"+ "," + "'"+data["imagemUser"] + "'" ")"
 					cur.execute(sql)
 					conexao.commit()
 					return 'operacao foi realizada com sucesso',200
@@ -345,16 +345,16 @@ def cadastrarCampanha():
 
 	data = request.get_json()
 	cur = banco.cursor()
-	sql = "SELECT * FROM usuario WHERE usuario.iduser = " + str(data["idUser"])
+	sql = "SELECT * FROM usuario WHERE usuario.iduser = " + str(data["idUsuarios"])
 	resultado = None
 	cur.execute(sql)
 	resultado = cur.fetchall();
 	cur.close()
-	data_camp = date.today()
+	dataCampanhas = date.today()
 	if(resultado):
 		#verificando se a campanha ja esta cadastrada
 		cur = banco.cursor()
-		sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.idcampanhasperdidos = " + str(data["idCampanhas"])
+		sql = "SELECT * FROM campanhasperdidos WHERE campanhasperdidos.nomedesaparecido = " + "'"+ str(data["nome"])+ "'"
 		resultado = None
 		cur.execute(sql)
 		resultado = cur.fetchall();
@@ -363,9 +363,9 @@ def cadastrarCampanha():
 		if(resultado):
 			return 'campanha ja cadastrada',412
 		else:
-			if(validarDataParaBO(data["dataDesaparecimento"]) == 'nao precisa informar B.O.',200):
+			if(validarDataParaBO(data["data_desaparecimento"]) == 'nao precisa informar B.O.',200):
 				cur = banco.cursor()                                                                                                                                                     
-				sql = "INSERT INTO campanhasperdidos(idcampanhasperdidos, iduser, statuscampanhasperdidos, datanascimento, nomedesaparecido, idadedesaparecido, sexodesaparecido, olhosdesaparecido, racadesaparecido, cabelodesaparecido, datadesaparecimento, datacampanha, bo, descricao) values (" + str(data["idCampanhas"]) + ", " + str(data["idUser"]) + ", " + "'"+str(data["statusCampanhas"])+"'"+ ", " + "'"+str(data["dataNasc"])+"'"+ ", " + "'"+str(data["nomeDesaparecido"])+"'" + ", " + "'"+str(data["idadeDesaparecido"])+"'"+ ", "+ "'"+str(data["sexoDesaparecido"])+"'" + ", " + "'"+str(data["olhosDesaparecido"])+"'"+ ", "+ "'"+str(data["racaDesaparecido"])+"'" + ", " + "'"+str(data["cabeloDesaparecido"])+"'" + ", " + "'"+str(data["dataDesaparecimento"])+"'" + ", " + "'"+str(data_camp)+"'" + ", " + "'"+str(data["bo"])+"'"+  ", " + "'"+str(data["descricao"])+"'" + ")"
+				sql = "INSERT INTO campanhasperdidos(iduser, statuscampanhasperdidos, datanascimento, nomedesaparecido, idadedesaparecido, sexodesaparecido, olhosdesaparecido, racadesaparecido, cabelodesaparecido, datadesaparecimento, datacampanha, bo, descricao) values (" + str(data["idUsuarios"]) + ", " + "'"+str(data["statusCampanhasPerdidas"])+"'"+ ", " + "'"+str(data["dataNascimentoDesaparecidos"])+"'"+ ", " + "'"+str(data["nome"])+"'" + ", " + "'"+str(data["idadeDesaparecidos"])+"'"+ ", "+ "'"+str(data["sexoDesaparecidos"])+"'" + ", " + "'"+str(data["corOlhosDesaparecidos"])+"'"+ ", "+ "'"+str(data["racasDesaparecidos"])+"'" + ", " + "'"+str(data["cabelosDesaparecidos"])+"'" + ", " + "'"+str(data["data_desaparecimento"])+"'" + ", " + "'"+str(dataCampanhas)+"'" + ", " + "'"+str(data["numerosBO"])+"'"+  ", " + "'"+str(data["descricao"])+"'" + ")"
 				cur.execute(sql)
 				banco.commit()
 				cur.close()
@@ -393,11 +393,11 @@ def selecionarCampanhasBoNull():
 	if(resultado):
 		for elemento in resultado:
 			consultaEmDict = collections.OrderedDict()
-			consultaEmDict = {'idCampanhas': elemento[0], 'idUser': elemento[1], 'statusCampanhas': elemento[2],
-			   'dataNasc':elemento[3], 'nomeDesaparecido': elemento[4], 'idadeDesaparecido': elemento[5], 
-			   'sexoDesaparecido':elemento[6],'olhosDesaparecido':elemento[7], 'racaDesaparecido':elemento[8],
-			   'cabeloDesaparecido':elemento[9], 'dataDesaparecimento':elemento[10], 'dataCampanha':elemento[11],
-			   'bo':elemento[12], 'descricao':elemento[13]} 
+			consultaEmDict = {'idDesaparecidos': elemento[0], 'idUsuarios': elemento[1], 'statusCampanhasPerdidas': elemento[2],
+			   'dataNascimentoDesaparecido':elemento[3], 'nome': elemento[4], 'idadeDesaparecidos': elemento[5], 
+			   'sexoDesaparecidos':elemento[6],'corOlhosDesaparecidos':elemento[7], 'racasDesaparecidos':elemento[8],
+			   'cabelosDesaparecidos':elemento[9], 'data_desaparecimento':elemento[10], 'dataCampanhas':elemento[11],
+			   'numerosBO':elemento[12], 'descricao':elemento[13]} 
 			resultList.append(consultaEmDict)
 
 		return jsonify(resultList)
@@ -421,11 +421,11 @@ def selecionarCampanhaId(id_campanha): #seleciona campanha daquele id
 	if(resultado):
 		for elemento in resultado:
 			consultaCollec = collections.OrderedDict()
-			consultaCollec = {'idCampanhas': elemento[0], 'idUser': elemento[1], 'statusCampanhas': elemento[2],
-			   'dataNasc':elemento[3], 'nomeDesaparecido': elemento[4], 'idadeDesaparecido': elemento[5], 
-			   'sexoDesaparecido':elemento[6],'olhosDesaparecido':elemento[7], 'racaDesaparecido':elemento[8],
-			   'cabeloDesaparecido':elemento[9], 'dataDesaparecimento':elemento[10], 'dataCampanha':elemento[11],
-			   'bo':elemento[12], 'descricao':elemento[13]}
+			consultaCollec = {'idDesaparecidos': elemento[0], 'idUsuarios': elemento[1], 'statusCampanhasPerdidas': elemento[2],
+			   'dataNascimentoDesaparecido':elemento[3], 'nome': elemento[4], 'idadeDesaparecidos': elemento[5], 
+			   'sexoDesaparecidos':elemento[6],'corOlhosDesaparecidos':elemento[7], 'racasDesaparecidos':elemento[8],
+			   'cabelosDesaparecidos':elemento[9], 'data_desaparecimento':elemento[10], 'dataCampanhas':elemento[11],
+			   'numerosBO':elemento[12], 'descricao':elemento[13]}
 			resultList.append(consultaCollec)
 		return jsonify(resultList)
 
@@ -449,11 +449,11 @@ def selecionarCampanhaUser(id_user): #seleciona as campanhas cadastradas por um 
 	if(resultado):
 		for elemento in resultado:
 			consultaCollec = collections.OrderedDict()
-			consultaCollec = {'idCampanhas': elemento[0], 'idUser': elemento[1], 'statusCampanhas': elemento[2],
-			   'dataNasc':elemento[3], 'nomeDesaparecido': elemento[4], 'idadeDesaparecido': elemento[5], 
-			   'sexoDesaparecido':elemento[6],'olhosDesaparecido':elemento[7], 'racaDesaparecido':elemento[8],
-			   'cabeloDesaparecido':elemento[9], 'dataDesaparecimento':elemento[10], 'dataCampanha':elemento[11],
-			   'bo':elemento[12], 'descricao':elemento[13]}
+			consultaCollec = {'idDesaparecidos': elemento[0], 'idUsuarios': elemento[1], 'statusCampanhasPerdidas': elemento[2],
+			   'dataNascimentoDesaparecido':elemento[3], 'nome': elemento[4], 'idadeDesaparecidos': elemento[5], 
+			   'sexoDesaparecidos':elemento[6],'corOlhosDesaparecidos':elemento[7], 'racasDesaparecidos':elemento[8],
+			   'cabelosDesaparecidos':elemento[9], 'data_desaparecimento':elemento[10], 'dataCampanhas':elemento[11],
+			   'numerosBO':elemento[12], 'descricao':elemento[13]}
 			resultList.append(consultaCollec)
 		return jsonify(resultList)
 
@@ -475,7 +475,7 @@ def alterarStatus(id_campanha): #altera o status de uma campanha
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET statuscampanhasperdidos = " + "'"+str(dat["status"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET statuscampanhasperdidos = " + "'"+str(dat["statusCampanhasPerdidas"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -523,7 +523,7 @@ def alterarCabelo(id_campanha):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET cabelodesaparecido = " + "'"+str(data["cabelo"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET cabelodesaparecido = " + "'"+str(data["cabelosDesaparecidos"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -548,7 +548,7 @@ def alterarRaca(id_campanha):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET racadesaparecido = " + "'"+str(data["raca"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET racadesaparecido = " + "'"+str(data["racasDesaparecidos"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -572,7 +572,7 @@ def alterarIdade(id_campanha):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET idadedesaparecido = " + "'"+str(data["idade"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET idadedesaparecido = " + "'"+str(data["idadeDesaparecidos"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -597,7 +597,7 @@ def alterarSexo(id_campanha):
 	resultado = cur.fetchall();
         
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET sexodesaparecido = " + "'"+str(data["sexo"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET sexodesaparecido = " + "'"+str(data["sexoDesaparecidos"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -646,7 +646,7 @@ def alterarBO(id_campanha): #altera o B.O. de uma campanha
 	cur.execute(sql)
 	resultado = cur.fetchall();
 	if(resultado):
-		sql = "UPDATE campanhasperdidos" + " SET bo = " + "'"+str(data["bo"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
+		sql = "UPDATE campanhasperdidos" + " SET bo = " + "'"+str(data["numerosBO"])+"'" + " WHERE idcampanhasperdidos = " + str(id_campanha)
 		cur = banco.cursor()
 		cur.execute(sql)
 		banco.commit()
@@ -697,7 +697,7 @@ def inserirLocalCampanha():
 
 	if(resultado):
 		cur = banco.cursor()
-		sql = "INSERT INTO attlocalizacaocampanhasperdidos(idcampanhasperdidos, latitude, longitude, attdata, attbairro) VALUES("+ str(data["id_campanha"]) + ", "  + str(data["latitude"]) + ", " + str(data["longitude"]) + ", " +"'"+str(data["attdata"])+"'"+ ", " + "'"+str(data["attbairro"])+"'" + ")"
+		sql = "INSERT INTO attlocalizacaocampanhasperdidos(idcampanhasperdidos, latitude, longitude, attdata, attbairro) VALUES("+ str(data["idDesaparecidos"]) + ", "  + str(data["latitude"]) + ", " + str(data["longitude"]) + ", " +"'"+str(data["attdata"])+"'"+ ", " + "'"+str(data["attbairro"])+"'" + ")"
 		cur.execute(sql)
 		banco.commit()
 		cur.close()
@@ -723,7 +723,7 @@ def selecionarCampanhaIdLocalizacao(id_campanha): #seleciona a campanha daquele 
 	if(resultado):
 		for elemento in resultado:
 			consultaCollec = collections.OrderedDict()
-			consultaCollec = {'idCampanhas': elemento[0], 'longitude': elemento[1], 'latitude': elemento[2],
+			consultaCollec = {'idDesaparecidos': elemento[0], 'longitude': elemento[1], 'latitude': elemento[2],
 			   'data':elemento[3], 'bairro': elemento[4]}
 			resultList.append(consultaCollec)
 		return jsonify(resultList)
@@ -748,11 +748,11 @@ def selecionarCampanhaBairro(bairro): #seleciona as campanhas por bairro
 	if(resultado):
 		for elemento in resultado:
 			consultaCollec = collections.OrderedDict()
-			consultaCollec = {'idCampanhas': elemento[0], 'idUser': elemento[1], 'statusCampanhas': elemento[2],
-			   'dataNasc':elemento[3], 'nomeDesaparecido': elemento[4], 'idadeDesaparecido': elemento[5], 
-			   'sexoDesaparecido':elemento[6],'olhosDesaparecido':elemento[7], 'racaDesaparecido':elemento[8],
-			   'cabeloDesaparecido':elemento[9], 'dataDesaparecimento':elemento[10], 'dataCampanha':elemento[11],
-			   'bo':elemento[12], 'descricao':elemento[13]}
+			consultaCollec = {'idDesaparecidos': elemento[0], 'idUsuarios': elemento[1], 'statusCampanhasPerdidas': elemento[2],
+			   'dataNascimentoDesaparecido':elemento[3], 'nome': elemento[4], 'idadeDesaparecidos': elemento[5], 
+			   'sexoDesaparecidos':elemento[6],'corOlhosDesaparecidos':elemento[7], 'racasDesaparecidos':elemento[8],
+			   'cabelosDesaparecidos':elemento[9], 'data_desaparecimento':elemento[10], 'dataCampanhas':elemento[11],
+			   'numerosBO':elemento[12], 'descricao':elemento[13], 'local_desaparecimento': bairro}
 			resultList.append(consultaCollec)
 		return jsonify(resultList)
 	else:
@@ -874,7 +874,11 @@ def selecionarCampanhaIdCampanha(id_campanha): #seleciona campanha daquele id
 	if(resultado):
 		for elemento in resultado:
 			consultaEmDict = collections.OrderedDict()
-			consultaEmDict = {'idUsuario': elemento[0]} 
+			consultaEmDict = {'idDesaparecidos': elemento[0], 'idUsuarios': elemento[1], 'statusCampanhasPerdidas': elemento[2],
+			   'dataNascimentoDesaparecido':elemento[3], 'nome': elemento[4], 'idadeDesaparecidos': elemento[5], 
+			   'sexoDesaparecidos':elemento[6],'corOlhosDesaparecidos':elemento[7], 'racasDesaparecidos':elemento[8],
+			   'cabelosDesaparecidos':elemento[9], 'data_desaparecimento':elemento[10], 'dataCampanhas':elemento[11],
+			   'numerosBO':elemento[12], 'descricao':elemento[13]} 
 			resultList.append(consultaEmDict)
 
 		return jsonify(resultList)
@@ -899,7 +903,11 @@ def selecionarCampanhaIdUser(id_user): #seleciona as campanhas cadastradas por u
 	if(resultado):
 		for elemento in resultado:
 			consultaEmDict = collections.OrderedDict()
-			consultaEmDict = {'idCampanha': elemento[1]} 
+			consultaEmDict = {'idDesaparecidos': elemento[0], 'idUsuarios': elemento[1], 'statusCampanhasPerdidas': elemento[2],
+			   'dataNascimentoDesaparecido':elemento[3], 'nome': elemento[4], 'idadeDesaparecidos': elemento[5], 
+			   'sexoDesaparecidos':elemento[6],'corOlhosDesaparecidos':elemento[7], 'racasDesaparecidos':elemento[8],
+			   'cabelosDesaparecidos':elemento[9], 'data_desaparecimento':elemento[10], 'dataCampanhas':elemento[11],
+			   'numerosBO':elemento[12], 'descricao':elemento[13]} 
 			resultList.append(consultaEmDict)
 
 		return jsonify(resultList)
